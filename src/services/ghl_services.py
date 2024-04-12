@@ -2,7 +2,7 @@ import json
 import time
 import requests
 from pprint import pprint
-from logging_config import logger as logging
+from logging_config import logger
 
 
 with open("auth/.ghl_tokens.json", "r") as file:
@@ -19,7 +19,7 @@ def get_conversations(ghl_contact_id):
     """
     searches for Conversations by Contact ID and returns an Conversation object
     """
-    logging.info(f"{get_conversations.__name__} -- GHL - GETTING CONVERSATION FOR - {ghl_contact_id}")
+    logger.info(f"{get_conversations.__name__} -- GHL - GETTING CONVERSATION FOR - {ghl_contact_id}")
 
     response = requests.get(
         url=f"https://services.leadconnectorhq.com/conversations/search?contactId={ghl_contact_id}",
@@ -33,7 +33,7 @@ def get_conversations(ghl_contact_id):
 
 
     status_code = response.status_code
-    logging.info(f"{get_conversations.__name__} -- GHL - STATUS CODE -- {status_code}")
+    logger.info(f"{get_conversations.__name__} -- GHL - STATUS CODE -- {status_code}")
 
     result = {
         "success": False,
@@ -43,7 +43,7 @@ def get_conversations(ghl_contact_id):
 
     try:
         response_data = response.json()
-        logging.info(f"{get_conversations.__name__} -- GHL RESPONSE - {response_data}")
+        logger.info(f"{get_conversations.__name__} -- GHL RESPONSE - {response_data}")
 
         if response_data["total"] > 0:
 
@@ -51,7 +51,7 @@ def get_conversations(ghl_contact_id):
             result["data"] = response_data
             result["conversation_id"] = response_data["conversations"][0]["id"]
     except Exception as ex:
-        logging.error(f"{get_conversations.__name__} -- !!! GHL ERROR - {ex}")
+        logger.error(f"{get_conversations.__name__} -- !!! GHL ERROR - {ex}")
 
     return result
 
@@ -60,7 +60,7 @@ def create_conversation(ghl_contact_id):
     """
     creates conversation for a provided Contact ID
     """
-    logging.info(f"{create_conversation.__name__} -- GHL - CREATING CONVERSATION FOR - {ghl_contact_id}")
+    logger.info(f"{create_conversation.__name__} -- GHL - CREATING CONVERSATION FOR - {ghl_contact_id}")
 
     response = requests.post(
         url=f"https://services.leadconnectorhq.com/conversations/",
@@ -77,7 +77,7 @@ def create_conversation(ghl_contact_id):
     )
 
     status_code = response.status_code
-    logging.info(f"{create_conversation.__name__} -- GHL - STATUS CODE -- {status_code}")
+    logger.info(f"{create_conversation.__name__} -- GHL - STATUS CODE -- {status_code}")
 
     result = {
         "success": False,
@@ -87,13 +87,13 @@ def create_conversation(ghl_contact_id):
 
     try:
         response_data = response.json()
-        logging.info(f"{create_conversation.__name__} -- GHL RESPONSE - {response_data}")
+        logger.info(f"{create_conversation.__name__} -- GHL RESPONSE - {response_data}")
 
         result["success"] = True if status_code in (201, 200) and response_data["success"] is True else False
         result["data"] = response_data
         result["conversation_id"] = response_data["conversation"]["id"]
     except Exception as ex:
-        logging.error(f"{create_conversation.__name__} -- !!! GHL ERROR - {ex}")
+        logger.error(f"{create_conversation.__name__} -- !!! GHL ERROR - {ex}")
 
     return result
 
@@ -102,7 +102,7 @@ def add_inbound_message(ghl_conversation_id, message_text):
     """
     creates inbound Message in a Conversation for a provided Contact ID
     """
-    logging.info(f"{add_inbound_message.__name__} -- GHL - ADDING SMS NOTE TO -- {ghl_conversation_id}")
+    logger.info(f"{add_inbound_message.__name__} -- GHL - ADDING SMS NOTE TO -- {ghl_conversation_id}")
     response = requests.post(
         url=f"https://services.leadconnectorhq.com/conversations/messages/inbound",
         headers={
@@ -120,17 +120,17 @@ def add_inbound_message(ghl_conversation_id, message_text):
     )
 
     status_code = response.status_code
-    logging.info(f"{add_inbound_message.__name__} -- GHL - STATUS CODE -- {status_code}")
+    logger.info(f"{add_inbound_message.__name__} -- GHL - STATUS CODE -- {status_code}")
 
     result = False
 
     try:
         response_data = response.json()
-        logging.info(f"{add_inbound_message.__name__} -- GHL RESPONSE - {response_data}")
+        logger.info(f"{add_inbound_message.__name__} -- GHL RESPONSE - {response_data}")
 
         result = True if response_data["success"] is True else False
     except Exception as ex:
-        logging.error(f"{add_inbound_message.__name__} -- !!! GHL ERROR - {ex}")
+        logger.error(f"{add_inbound_message.__name__} -- !!! GHL ERROR - {ex}")
 
     return result
 
@@ -139,7 +139,7 @@ def add_inbound_message(ghl_conversation_id, message_text):
 #     """
 #     creates inbound Message in a Conversation for a provided Contact ID
 #     """
-#     logging.info(f"{add_outbound_message.__name__} -- GHL - ADDING SMS NOTE TO -- {ghl_conversation_id}")
+#     logger.info(f"{add_outbound_message.__name__} -- GHL - ADDING SMS NOTE TO -- {ghl_conversation_id}")
 #     response = requests.post(
 #         url=f"https://services.leadconnectorhq.com/conversations/messages/outbound",
 #         headers={
@@ -157,17 +157,17 @@ def add_inbound_message(ghl_conversation_id, message_text):
 #     )
 
 #     status_code = response.status_code
-#     logging.info(f"{add_outbound_message.__name__} -- GHL - STATUS CODE -- {status_code}")
+#     logger.info(f"{add_outbound_message.__name__} -- GHL - STATUS CODE -- {status_code}")
 
 #     result = False
 
 #     try:
 #         response_data = response.json()
-#         logging.info(f"{add_outbound_message.__name__} -- GHL RESPONSE - {response_data}")
+#         logger.info(f"{add_outbound_message.__name__} -- GHL RESPONSE - {response_data}")
 
 #         result = True if response_data["success"] is True else False
 #     except Exception as ex:
-#         logging.error(f"{add_outbound_message.__name__} -- !!! GHL ERROR - {ex}")
+#         logger.error(f"{add_outbound_message.__name__} -- !!! GHL ERROR - {ex}")
 
 #     return result
 
@@ -195,7 +195,7 @@ def set_ghl_sms_blast_status(contact_id: str, status: str):
         }
             ]
                 }
-    logging.info(f"{set_ghl_sms_blast_status.__name__} -- GHL - SETTING STATUS - {status} FOR - {contact_id}")
+    logger.info(f"{set_ghl_sms_blast_status.__name__} -- GHL - SETTING STATUS - {status} FOR - {contact_id}")
 
     response = requests.put(
         url=BASE_URL, headers=HEADERS,
@@ -203,17 +203,17 @@ def set_ghl_sms_blast_status(contact_id: str, status: str):
     )
 
     status_code = response.status_code
-    logging.info(f"{set_ghl_sms_blast_status.__name__} -- GHL - STATUS CODE -- {status_code}")
+    logger.info(f"{set_ghl_sms_blast_status.__name__} -- GHL - STATUS CODE -- {status_code}")
 
     result = False
 
     try:
         response_data = response.json()
-        logging.info(f"{set_ghl_sms_blast_status.__name__} -- GHL RESPONSE - {response_data}")
+        logger.info(f"{set_ghl_sms_blast_status.__name__} -- GHL RESPONSE - {response_data}")
 
         result = True if response_data["succeded"] is True else False
     except Exception as ex:
-        logging.error(f"{set_ghl_sms_blast_status.__name__} -- !!! GHL ERROR - {ex}")
+        logger.error(f"{set_ghl_sms_blast_status.__name__} -- !!! GHL ERROR - {ex}")
 
     return result
 
@@ -224,7 +224,7 @@ def modify_ghl_conversation(contact_id, sms_message):
     by defining whether provided Contact has a Conversation
     """
 
-    logging.info(f"{modify_ghl_conversation.__name__} -- MODIFYING CONTACTs CONVERSATIONS - {contact_id}")
+    logger.info(f"{modify_ghl_conversation.__name__} -- MODIFYING CONTACTs CONVERSATIONS - {contact_id}")
 
     get_conversation_response = get_conversations(contact_id)
     time.sleep(0.1)
@@ -266,7 +266,7 @@ def delete_conversation(conversation_id: str):
         "data": data_json
     }
 
-    logging.info(f"\n{delete_conversation.__name__} -- GHL RESPONSE - {result}")
+    logger.info(f"\n{delete_conversation.__name__} -- GHL RESPONSE - {result}")
     return result
 
 
@@ -289,17 +289,17 @@ def send_sms_ghl(contact_id: str, message: str):
     response = requests.post(url=BASE_URL, headers=HEADERS, json=PAYLOAD)
     
     status_code = response.status_code
-    logging.info(f"{send_sms_ghl.__name__} -- GHL - STATUS CODE -- {status_code}")
+    logger.info(f"{send_sms_ghl.__name__} -- GHL - STATUS CODE -- {status_code}")
 
     result = False
 
     try:
         response_data = response.json()
-        logging.info(f"{send_sms_ghl.__name__} -- GHL RESPONSE - {response_data}")
+        logger.info(f"{send_sms_ghl.__name__} -- GHL RESPONSE - {response_data}")
 
         result = True if status_code in (201, 200) else False
     except Exception as ex:
-        logging.error(f"{send_sms_ghl.__name__} -- !!! GHL ERROR - {ex}")
+        logger.error(f"{send_sms_ghl.__name__} -- !!! GHL ERROR - {ex}")
 
     return result
 
@@ -319,7 +319,7 @@ def get_ghl_contacts():
         "data": data_json
     }
 
-    logging.info(f"{get_ghl_contacts.__name__} -- GHL RESPONSE - {result}")
+    logger.info(f"{get_ghl_contacts.__name__} -- GHL RESPONSE - {result}")
 
     return result
 

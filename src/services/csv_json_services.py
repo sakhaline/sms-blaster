@@ -1,6 +1,6 @@
 import csv
 import json
-from logging_config import logger as logging
+from logging_config import logger
 import utils.utils as utils
 import services.ghl_services as ghl
 
@@ -80,7 +80,7 @@ def convert_csv_to_json(csv_path: str, json_path: str):
     with open(json_path, 'w') as jsonfile:
         json.dump(data, jsonfile, indent=2)
 
-    logging.info(
+    logger.info(
         f"{convert_csv_to_json.__name__} -- CONVERTED CSV [{csv_path}] TO JSON [{json_path}]")
     return data
 
@@ -93,14 +93,14 @@ def set_contact_sms_status(contacts_json_path: str, status: bool):
         contacts = json.load(f)
 
     for contact in contacts:
-        logging.info(
+        logger.info(
             f"{set_contact_sms_status.__name__} -- CONTACT {contact.get('Contact Id')} STATUS CHANGED TO {status}")
         contact["sms_sent"] = status
 
     with open(contacts_json_path, "w") as f:
         json.dump(contacts, f)
 
-    logging.info(
+    logger.info(
         f"{set_contact_sms_status.__name__} -- SAVED TO FILE - {contacts_json_path}")
     return True
 

@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
-from logging_config import logger as logging
+from logging_config import logger
 from utils.utils import format_phone_number
 
 load_dotenv()
@@ -17,7 +17,7 @@ class Twilio:
     def send_sms(self, phone_number, message):
         phone_number = format_phone_number(phone_number)
 
-        logging.info(f"{self.send_sms.__name__} -- TWILIO - SENDING SMS TO - {phone_number}")
+        logger.info(f"{self.send_sms.__name__} -- TWILIO - SENDING SMS TO - {phone_number}")
 
         result = {
             "success": None,
@@ -30,26 +30,26 @@ class Twilio:
                 from_=os.getenv("TWILIO_FROM_NUMBER"),
                 to=phone_number
             )
-            logging.info(f"{self.send_sms.__name__} -- TWILIO - STATUS - {sms.status}")
+            logger.info(f"{self.send_sms.__name__} -- TWILIO - STATUS - {sms.status}")
 
             result["success"] = True if sms.status in ("delivered", "queued", "sending", "sent", "receiving", "received", "accepted") else False
             result["sms_id"] = sms.sid
 
         except Exception:
-            logging.error(f"{self.send_sms.__name__} -- !!! TWILIO ERROR")
+            logger.error(f"{self.send_sms.__name__} -- !!! TWILIO ERROR")
         
         return result
 
     def sms_status(self, sid):
-        logging.info(f"{self.sms_status.__name__} -- TWILIO - CHECKING DELIVERY STATUS OF - {sid}")
+        logger.info(f"{self.sms_status.__name__} -- TWILIO - CHECKING DELIVERY STATUS OF - {sid}")
         status = None
 
         try:
             status = self.client.messages(sid).fetch().status
             # status = self.client.messages(sid).fetch().error_code
-            logging.info(f"{self.sms_status.__name__} -- TWILIO - DELIVERY STATUS - {status}")
+            logger.info(f"{self.sms_status.__name__} -- TWILIO - DELIVERY STATUS - {status}")
         except Exception:
-            logging.error(f"{self.sms_status.__name__} -- !!! TWILIO ERROR")
+            logger.error(f"{self.sms_status.__name__} -- !!! TWILIO ERROR")
 
         return True if status == "delivered" else False
     

@@ -1,5 +1,5 @@
 import json
-from logging_config import logger as logging
+from logging_config import logger
 from pprint import pprint, pformat
 import datetime
 
@@ -28,12 +28,12 @@ def prepare_statistics_report(result_json_path: str):
         "date_time": datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
     }
 
-    logging.info(f"{prepare_statistics_report.__name__} -- PREPARING SMS OUTREACH STATS FOR - {result['contacts_total']} - CONTACTS")
+    logger.info(f"{prepare_statistics_report.__name__} -- PREPARING SMS OUTREACH STATS FOR - {result['contacts_total']} - CONTACTS")
 
 
     for i, contact in enumerate(contacts, start=1):
 
-        logging.info(f"{prepare_statistics_report.__name__} -- CONTACT # - {i}")
+        logger.info(f"{prepare_statistics_report.__name__} -- CONTACT # - {i}")
 
         if contact.get("sms_delivered") == True:
             result["contacts_sms_sent"] += 1
@@ -66,7 +66,7 @@ def prepare_statistics_report(result_json_path: str):
     with open("data/outreach_statistics.json", "w") as f:
         json.dump(statistics_array, f)
 
-    logging.info(f"{prepare_statistics_report.__name__} -- STATISTICS PREPARED - {pformat(result)}")
+    logger.info(f"{prepare_statistics_report.__name__} -- STATISTICS PREPARED - {pformat(result)}")
 
     return result
 
