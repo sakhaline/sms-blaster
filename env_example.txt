@@ -1,0 +1,5 @@
+TWILIO_SID="example"
+TWILIO_AUTH_TOKEN="example"
+TWILIO_FROM_NUMBER="example"
+TELNYX_API_KEY="example"
+TELNYX_PUBLIC_KEY="example"

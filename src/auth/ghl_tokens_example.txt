@@ -1,0 +1,11 @@
+Store tokens in .json format
+
+{
+    "client_id": "example",
+    "client_secret": "example",
+    "api_key": "example",
+    "refresh_token": "example",
+    "location_id": "example",
+    "conversation_provider_id": "example",
+    "refreshed_at": "example"
+}
