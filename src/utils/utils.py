@@ -1,6 +1,6 @@
 from datetime import datetime
 import time
-from logging_config import logger as logging
+from logging_config import logger
 import phonenumbers
 from pprint import pformat
 import datetime
@@ -221,9 +221,9 @@ def format_phone_number(phone_number: str):
         phone_number_formatted = phonenumbers.format_number(
             phonenumbers.parse(phone_number, 'US'),
             phonenumbers.PhoneNumberFormat.E164)
-        logging.info(f"{format_phone_number.__name__} -- FORMATTED PHONE NUMBER -- FROM - {phone_number} - TO - {phone_number_formatted}")
+        logger.info(f"{format_phone_number.__name__} -- FORMATTED PHONE NUMBER -- FROM - {phone_number} - TO - {phone_number_formatted}")
     except Exception as ex:
-        logging.warning(f"{format_phone_number.__name__} -- ! FAILED FORMATTING - {phone_number} - {ex}")
+        logger.warning(f"{format_phone_number.__name__} -- ! FAILED FORMATTING - {phone_number} - {ex}")
     return phone_number_formatted
 
 

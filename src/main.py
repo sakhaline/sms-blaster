@@ -1,4 +1,4 @@
-from logging_config import logger as logging
+from logging_config import logger
 from auth.ghl_authenticator import refresh_auth_token
 from utils.bash_utils import execute_bash
 from datetime import datetime
@@ -15,7 +15,7 @@ def main(contacts_json_path: str):
 
     # if refresh_auth_token("auth/ghl_tokens.json"):
     #     logging.info(f"{main.__name__} -- REFRESHED GHL AUTH TOKEN")
-    logging.info(f"{main.__name__} -- STARTING BULK SMS OUTREACH")
+    logger.info(f"{main.__name__} -- STARTING BULK SMS OUTREACH")
 
     # major functionality execution
     sms.sms_blaster(contacts_json_path)

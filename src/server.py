@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
+from logging_config import logger
 
 
 app = FastAPI()
@@ -7,6 +8,7 @@ app = FastAPI()
 
 @app.get("/")
 def index_view():
+    logger.info(f"{index_view.__name__} -- INDEX ENDPOINT TRIGGERED")
     return {"success": True, "message": "SMS Blast Index"}
 
 

@@ -1,6 +1,6 @@
 import json
 import time
-from logging_config import logger as logging
+from logging_config import logger
 import datetime
 import services.telnyx_services as telnyx
 from services.twilio_services import Twilio
@@ -21,8 +21,8 @@ def sms_blaster(contacts_json_path: str):
     with open(contacts_json_path, "r") as f:
         contacts = json.load(f)
 
-    logging.info(f"{sms_blaster.__name__} -- {len(contacts)} CONTACTS RECEIVED")
-    logging.info(f"{sms_blaster.__name__} -- STARTING TELNYX SENDING")
+    logger.info(f"{sms_blaster.__name__} -- {len(contacts)} CONTACTS RECEIVED")
+    logger.info(f"{sms_blaster.__name__} -- STARTING TELNYX SENDING")
 
     # 1. Telnyx sending
     for i, contact in enumerate(contacts, start=1):
@@ -38,17 +38,17 @@ def sms_blaster(contacts_json_path: str):
 
         # telnyx_from_numbers = ["+19172031883", "+19172031874", "+19172031872"]
 
-        logging.info(f"--\n\n")
-        logging.info(f"{sms_blaster.__name__} ** TELNYX SENDING\n")
-        logging.info(f"{sms_blaster.__name__} -- CONTACT N - {i}\n")
-        logging.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
+        logger.info(f"--\n\n")
+        logger.info(f"{sms_blaster.__name__} ** TELNYX SENDING\n")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT N - {i}\n")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
 
         # if i < 20:
         #     input(">> ")
 
         # skipping Telnyx sent contacts
         if contact.get("sms_delivered") is True or contact.get("telnyx_sent") is True or contact.get("telnyx_delivered") is True:
-            logging.info(f"{sms_blaster.__name__} -- SKIPPING CONTACT")
+            logger.info(f"{sms_blaster.__name__} -- SKIPPING CONTACT")
             continue
 
         # formatting sms message
@@ -57,7 +57,7 @@ def sms_blaster(contacts_json_path: str):
         else:
             sms_message = sms_message.replace(")", "")
 
-        logging.info(f"{sms_blaster.__name__} -- SMS MESSAGE - {sms_message}")
+        logger.info(f"{sms_blaster.__name__} -- SMS MESSAGE - {sms_message}")
         contact["message"] = sms_message
 
         if to_phone_number not in telnyx_sent_contacts:
@@ -69,14 +69,14 @@ def sms_blaster(contacts_json_path: str):
             # telnyx_sent_result = {"success": False}
 
             if telnyx_sent_result["success"] is True:
-                logging.info(f"{sms_blaster.__name__} -- TELNYX - SMS SENT SUCCESSFULLY FOR - {to_phone_number}")
+                logger.info(f"{sms_blaster.__name__} -- TELNYX - SMS SENT SUCCESSFULLY FOR - {to_phone_number}")
 
                 contact["telnyx_sent"] = True
                 contact["telnyx_message_id"] = telnyx_sent_result["message_id"]
 
                 telnyx_sent_contacts.append(to_phone_number)
             else:
-                logging.warning(f"{sms_blaster.__name__} -- ! TELNYX - SMS NOT SENT - {to_phone_number}")
+                logger.warning(f"{sms_blaster.__name__} -- ! TELNYX - SMS NOT SENT - {to_phone_number}")
 
         else:
             contact["telnyx_sent"] = True
@@ -86,24 +86,24 @@ def sms_blaster(contacts_json_path: str):
             json.dump(contacts, f, indent=4)
         time.sleep(1)
 
-    logging.info(f"{sms_blaster.__name__} -- FINISHED TELNYX SENDING\n\n")
+    logger.info(f"{sms_blaster.__name__} -- FINISHED TELNYX SENDING\n\n")
     # Telnyx Sending finished -----------------------------------------------------------------------------------------------------
     time.sleep(10)
     # input(">>")
     # Telnyx delivery status checking started -------------------------------------------------------------------------------------
-    logging.info(f"{sms_blaster.__name__} -- STARTING TELNYX DELIVERY CHECKING")
+    logger.info(f"{sms_blaster.__name__} -- STARTING TELNYX DELIVERY CHECKING")
     # retrieving contacts
     with open(contacts_json_path, "r") as f:
         contacts = json.load(f)
     # 2. Telnyx delivery checking
     for i, contact in enumerate(contacts, start=1):
-        logging.info(f"--\n\n")
-        logging.info(f"{sms_blaster.__name__} ** TELNYX DELIVERY CHECKING\n")
-        logging.info(f"{sms_blaster.__name__} -- CONTACT N - {i}\n")
-        logging.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
+        logger.info(f"--\n\n")
+        logger.info(f"{sms_blaster.__name__} ** TELNYX DELIVERY CHECKING\n")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT N - {i}\n")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
 
         if contact.get("sms_delivered") is True or contact.get("telnyx_sent") != True:
-            logging.info(f"{sms_blaster.__name__} -- SKIPPING CONTACT")
+            logger.info(f"{sms_blaster.__name__} -- SKIPPING CONTACT")
             continue
 
         contact_id = contact.get("Contact Id")
@@ -117,7 +117,7 @@ def sms_blaster(contacts_json_path: str):
             telnyx_delivery_result = telnyx.check_telnyx_delivery_status(message_id)
 
             if telnyx_delivery_result is True:
-                logging.info(f"{sms_blaster.__name__} -- TELNYX - SMS DELIVERED SUCCESSFULLY FOR - {to_phone_number}")
+                logger.info(f"{sms_blaster.__name__} -- TELNYX - SMS DELIVERED SUCCESSFULLY FOR - {to_phone_number}")
 
                 contact["telnyx_delivered"] = True
                 contact["sms_delivered"] = True
@@ -129,7 +129,7 @@ def sms_blaster(contacts_json_path: str):
                 ghl_modification_response = ghl.modify_ghl_conversation(contact_id, message)
 
                 if ghl_modification_response is True:
-                    logging.info(f"{sms_blaster.__name__} -- GHL - SMS NOTE SUCCESSFULLY ADDED TO - {contact_id}")
+                    logger.info(f"{sms_blaster.__name__} -- GHL - SMS NOTE SUCCESSFULLY ADDED TO - {contact_id}")
 
                     # Setting GHL SMS sending Status
                     ghl_status_setting_response = False
@@ -140,9 +140,9 @@ def sms_blaster(contacts_json_path: str):
                     #     logging.error(f"{sms_blaster.__name__} -- !!!! GHL ERROR - {ex}")
 
                     if ghl_status_setting_response is True:
-                            logging.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
+                            logger.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
             else:
-                logging.warning(f"{sms_blaster.__name__} -- ! TELNYX - SMS NOT DELIVERED - {to_phone_number}")
+                logger.warning(f"{sms_blaster.__name__} -- ! TELNYX - SMS NOT DELIVERED - {to_phone_number}")
         else:
             contact["telnyx_delivered"] = True
             contact["sms_delivered"] = True
@@ -153,7 +153,7 @@ def sms_blaster(contacts_json_path: str):
             ghl_modification_response = ghl.modify_ghl_conversation(contact_id, message)
 
             if ghl_modification_response is True:
-                logging.info(f"{sms_blaster.__name__} -- GHL - SMS NOTE SUCCESSFULLY ADDED TO - {contact_id}")
+                logger.info(f"{sms_blaster.__name__} -- GHL - SMS NOTE SUCCESSFULLY ADDED TO - {contact_id}")
                 # Setting GHL SMS sending Status
                 ghl_status_setting_response = False
 
@@ -163,7 +163,7 @@ def sms_blaster(contacts_json_path: str):
                 #     logging.error(f"{sms_blaster.__name__} -- !!!! GHL ERROR - {ex}")
 
                 if ghl_status_setting_response is True:
-                        logging.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
+                        logger.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
 
         # dumping updated contacts on each iteration
         with open(contacts_json_path, "w") as f:
@@ -171,7 +171,7 @@ def sms_blaster(contacts_json_path: str):
 
         time.sleep(0.1)
 
-    logging.info(f"{sms_blaster.__name__} -- FINISHED TELNYX DELIVERY CHECKING\n\n")
+    logger.info(f"{sms_blaster.__name__} -- FINISHED TELNYX DELIVERY CHECKING\n\n")
     # telnyx processing finished =========================================================================================================
 
     time.sleep(10)
@@ -345,97 +345,97 @@ def sms_blaster(contacts_json_path: str):
                 
     # # ghl processing started ==========================================================================================================
     
-    # # retrieving contacts
-    # with open(contacts_json_path, "r") as f:
-    #     contacts = json.load(f)
+    # retrieving contacts
+    with open(contacts_json_path, "r") as f:
+        contacts = json.load(f)
 
-    # logging.info(f"{sms_blaster.__name__} -- STARTING GHL SENDING")
+    logger.info(f"{sms_blaster.__name__} -- STARTING GHL SENDING")
 
-    # # 5. GHL sending
-    # for i, contact in enumerate(contacts, start=1):
+    # 5. GHL sending
+    for i, contact in enumerate(contacts, start=1):
 
-    #     sms_message = "Hello),\n\nI'm Adam Shapiro from Military & Patriots Investment Group, and I'm excited to share another compelling Self-Storage opportunity—a development in San Antonio, Texas, by Argus. This asset offers a potential 21+% IRR and 57%+ ROI, spanning over 80,000 sq ft with 700+ climate-controlled units. The project provides an excellent exit opportunity in just 2 years with institutional quality buyers.\n\nWith our proven track record of 200+ ground-up projects, most being successful 2-year holds, it's an opportunity worth exploring.\n\nInterested? Reply 'Yes.'\n\nBest\nAdam Shapiro\n\nNot interested? Reply 'OUT' to opt out."
+        sms_message = "Hello),\n\nI'm Adam Shapiro from Military & Patriots Investment Group, and I'm excited to share another compelling Self-Storage opportunity—a development in San Antonio, Texas, by Argus. This asset offers a potential 21+% IRR and 57%+ ROI, spanning over 80,000 sq ft with 700+ climate-controlled units. The project provides an excellent exit opportunity in just 2 years with institutional quality buyers.\n\nWith our proven track record of 200+ ground-up projects, most being successful 2-year holds, it's an opportunity worth exploring.\n\nInterested? Reply 'Yes.'\n\nBest\nAdam Shapiro\n\nNot interested? Reply 'OUT' to opt out."
 
-    #     logging.info(f"--\n\n")
-    #     logging.info(f"{sms_blaster.__name__} ** GHL SENDING\n")
-    #     logging.info(f"{sms_blaster.__name__} -- CONTACT N - {i}\n")
-    #     logging.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
+        logger.info(f"--\n\n")
+        logger.info(f"{sms_blaster.__name__} ** GHL SENDING\n")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT N - {i}\n")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
 
 
-    #     # skipping GHL sent contacts  
-    #     if contact.get("sms_delivered") is True or contact.get("ghl_sent") is True or contact.get("ghl_delivered") is True:
-    #         logging.info(f"{sms_blaster.__name__} -- SKIPPING CONTACT")
-    #         continue
+        # skipping GHL sent contacts  
+        if contact.get("sms_delivered") is True or contact.get("ghl_sent") is True or contact.get("ghl_delivered") is True:
+            logger.info(f"{sms_blaster.__name__} -- SKIPPING CONTACT")
+            continue
             
 
-    #     contact_id = contact.get("Contact Id")
-    #     contact_name = contact.get("First Name")
+        contact_id = contact.get("Contact Id")
+        contact_name = contact.get("First Name")
 
-    #     # formatting sms message
-    #     if contact_name:
-    #         sms_message = sms_message.replace(")", f" {contact_name}")
-    #     else:
-    #         sms_message = sms_message.replace(")", "")
+        # formatting sms message
+        if contact_name:
+            sms_message = sms_message.replace(")", f" {contact_name}")
+        else:
+            sms_message = sms_message.replace(")", "")
         
-    #     logging.info(f"{sms_blaster.__name__} -- SMS MESSAGE - {sms_message}")
+        logger.info(f"{sms_blaster.__name__} -- SMS MESSAGE - {sms_message}")
 
-    #     contact["message"] = sms_message
+        contact["message"] = sms_message
 
-    #     if contact_id not in ghl_sent_contacts:
+        if contact_id not in ghl_sent_contacts:
 
-    #         # sending SMS with GHL
-    #         ghl_sending_response = ghl.send_sms_ghl(contact_id, sms_message)
+            # sending SMS with GHL
+            ghl_sending_response = ghl.send_sms_ghl(contact_id, sms_message)
 
-    #         if ghl_sending_response is True:
-    #             logging.info(f"{sms_blaster.__name__} -- GHL - SMS SENT SUCCESSFULLY FOR - {contact_id}")
+            if ghl_sending_response is True:
+                logger.info(f"{sms_blaster.__name__} -- GHL - SMS SENT SUCCESSFULLY FOR - {contact_id}")
 
-    #             contact["ghl_sent"] = True
-    #             contact["ghl_delivered"] = True
-    #             contact["sms_delivered"] = True
-    #             contact["sms_sent_at"] = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+                contact["ghl_sent"] = True
+                contact["ghl_delivered"] = True
+                contact["sms_delivered"] = True
+                contact["sms_sent_at"] = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-    #             ghl_sent_contacts.append(contact_id)
+                ghl_sent_contacts.append(contact_id)
 
-    #             # Setting GHL SMS sending Status
-    #             ghl_status_setting_response = False
+                # Setting GHL SMS sending Status
+                ghl_status_setting_response = False
 
-    #             try:
-    #                 ghl_status_setting_response = ghl.set_ghl_sms_blast_status(contact_id, "Success")
-    #             except Exception as ex:
-    #                 logging.error(f"{sms_blaster.__name__} -- !!!! GHL ERROR - {ex}")
+                try:
+                    ghl_status_setting_response = ghl.set_ghl_sms_blast_status(contact_id, "Success")
+                except Exception as ex:
+                    logger.error(f"{sms_blaster.__name__} -- !!!! GHL ERROR - {ex}")
 
-    #             if ghl_status_setting_response is True:
-    #                     logging.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
+                if ghl_status_setting_response is True:
+                        logger.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
 
-    #         else:
-    #             logging.warning(f"{sms_blaster.__name__} -- ! GHL - SMS NOT SENT - {to_phone_number}")
+            else:
+                logger.warning(f"{sms_blaster.__name__} -- ! GHL - SMS NOT SENT - {to_phone_number}")
 
-    #     else:
-    #         contact["ghl_sent"] = True
-    #         contact["ghl_delivered"] = True
-    #         contact["sms_delivered"] = True
-    #         contact["sms_sent_at"] = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+        else:
+            contact["ghl_sent"] = True
+            contact["ghl_delivered"] = True
+            contact["sms_delivered"] = True
+            contact["sms_sent_at"] = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-    #         ghl_sent_contacts.append(contact_id)
+            ghl_sent_contacts.append(contact_id)
 
-    #         # Setting GHL SMS sending Status
-    #         ghl_status_setting_response = False
+            # Setting GHL SMS sending Status
+            ghl_status_setting_response = False
 
-    #         try:
-    #             ghl_status_setting_response = ghl.set_ghl_sms_blast_status(contact_id, "Success")
-    #         except Exception as ex:
-    #             logging.error(f"{sms_blaster.__name__} -- !!!! GHL ERROR - {ex}")
+            try:
+                ghl_status_setting_response = ghl.set_ghl_sms_blast_status(contact_id, "Success")
+            except Exception as ex:
+                logger.error(f"{sms_blaster.__name__} -- !!!! GHL ERROR - {ex}")
 
-    #         if ghl_status_setting_response is True:
-    #                 logging.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
+            if ghl_status_setting_response is True:
+                    logger.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
 
-    #     # dumping updated contacts on each iteration
-    #     with open(contacts_json_path, "w") as f:
-    #         json.dump(contacts, f)
+        # dumping updated contacts on each iteration
+        with open(contacts_json_path, "w") as f:
+            json.dump(contacts, f)
 
-    #     time.sleep(0.1)
+        time.sleep(0.1)
 
-    # logging.info(f"{sms_blaster.__name__} -- FINISHED GHL SENDING\n\n")
+    logger.info(f"{sms_blaster.__name__} -- FINISHED GHL SENDING\n\n")
     # # GHL Sending finished -----------------------------------------------------------------------------------------------------
     # # GHL processing finished ==================================================================================================
 
@@ -448,15 +448,15 @@ def sms_blaster(contacts_json_path: str):
     with open(contacts_json_path, "r") as f:
         contacts = json.load(f)
 
-    logging.info(f"{sms_blaster.__name__} -- STARTING MARKING FAILED CONTACTS STATUSES")
+    logger.info(f"{sms_blaster.__name__} -- STARTING MARKING FAILED CONTACTS STATUSES")
 
     # 6. Marking failed contacts
     for i, contact in enumerate(contacts, start=1):
 
-        logging.info(f"--\n\n")
-        logging.info(f"{sms_blaster.__name__} -- CONTACT N - {i}")
-        logging.info(f"{sms_blaster.__name__} ** FAILED CONTACTS MARKING")
-        logging.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
+        logger.info(f"--\n\n")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT N - {i}")
+        logger.info(f"{sms_blaster.__name__} ** FAILED CONTACTS MARKING")
+        logger.info(f"{sms_blaster.__name__} -- CONTACT DATA - {contact}")
 
         # if contact.get("sms_delivered") is not True:
 
@@ -474,4 +474,4 @@ def sms_blaster(contacts_json_path: str):
         #             logging.info(f"{sms_blaster.__name__} -- GHL - STATUS SUCCESSFULLY UPDATED - {contact_id}")
 
 
-    logging.info(f"{sms_blaster.__name__} -- SMS BLASTING COMPLETED ====")
+    logger.info(f"{sms_blaster.__name__} -- SMS BLASTING COMPLETED ====")
