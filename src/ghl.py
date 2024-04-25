@@ -25,6 +25,23 @@ ACCESS_TOKEN = keys["access_token"]
 REFRESH_TOKEN = keys["refresh_token"]
 
 
+def get_users_ghl(location_id):
+    BASE_URL = f"https://services.leadconnectorhq.com/users/"
+    HEADERS = {
+        'Accept': 'application/json',
+        'Authorization': f'Bearer {ACCESS_TOKEN}',
+        'Version': '2021-04-15'
+    }
+    PARAMS = {
+        "locationId": f"{location_id}"
+    }
+    response = requests.get(url=BASE_URL, headers=HEADERS, params=PARAMS)
+    if response.status_code == 200:
+        return response.text
+    else:
+        return f"{response.status_code}"
+
+
 def send_sms_ghl(contact_id: str, message: str):
     """
     sends single SMS message with GHL
@@ -104,8 +121,9 @@ def main(input_file, output_file):
 
 
 if __name__ == "__main__":
-    message = "Test"
-    input_file = "/home/sakhaline/ACTSE/frylow/sms_blaster/src/data/temp_test_contacts.json"
-    output_file = "/home/sakhaline/ACTSE/frylow/sms_blaster/src/data/processed_contacts.json"
-    main(input_file, output_file)
-    # send_sms_ghl("FBC7Lmslsd29qVJOjWTW", message)
+    # message = "Test"
+    # input_file = "/home/sakhaline/ACTSE/frylow/sms_blaster/src/data/temp_test_contacts.json"
+    # output_file = "/home/sakhaline/ACTSE/frylow/sms_blaster/src/data/processed_contacts.json"
+    # main(input_file, output_file)
+    
+    print(get_users_ghl(LOCATION_ID))

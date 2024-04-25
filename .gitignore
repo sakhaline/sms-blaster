@@ -4,3 +4,5 @@ sandbox.py
 .env
 venv
 .ghl_tokens.json
+.important.txt
+venv

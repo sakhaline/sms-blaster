@@ -37,7 +37,7 @@ def refresh_auth_token(tokens_json_path: str):
 
 
 if __name__ == "__main__":
-    if refresh_auth_token(".ghl_tokens.json"):
+    if refresh_auth_token("/home/sakhaline/ACTSE/frylow/sms_blaster/src/auth/.ghl_tokens.json"):
         print(True)
     else:
         print(False)
