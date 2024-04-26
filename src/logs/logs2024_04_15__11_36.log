@@ -1,0 +1,8 @@
+2024-04-15 11:36:08.407 UTC - INFO - === LOGGING STARTED ===
+2024-04-15 11:36:41.653 UTC - INFO - === LOGGING STARTED ===
+2024-04-15 11:36:41.984 UTC - INFO - send_sms_ghl -- GHL - STATUS CODE -- 401
+2024-04-15 11:36:41.984 UTC - INFO - send_sms_ghl -- GHL RESPONSE - {'statusCode': 401, 'message': 'Invalid JWT', 'error': 'Unauthorized'}
+2024-04-15 11:36:42.385 UTC - INFO - send_sms_ghl -- GHL - STATUS CODE -- 401
+2024-04-15 11:36:42.385 UTC - INFO - send_sms_ghl -- GHL RESPONSE - {'statusCode': 401, 'message': 'Invalid JWT', 'error': 'Unauthorized'}
+2024-04-15 11:36:42.799 UTC - INFO - send_sms_ghl -- GHL - STATUS CODE -- 401
+2024-04-15 11:36:42.799 UTC - INFO - send_sms_ghl -- GHL RESPONSE - {'statusCode': 401, 'message': 'Invalid JWT', 'error': 'Unauthorized'}

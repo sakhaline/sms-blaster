@@ -244,7 +244,6 @@ def modify_ghl_conversation(contact_id, sms_message):
             return True if add_inbound_message(conversation_id, sms_message) is True else False
 
 
-
 def delete_conversation(conversation_id: str):
     """
     deletes Conversation by proving it's ID
@@ -302,7 +301,6 @@ def send_sms_ghl(contact_id: str, message: str):
         logger.error(f"{send_sms_ghl.__name__} -- !!! GHL ERROR - {ex}")
 
     return result
-
 
 
 def get_ghl_contacts():
