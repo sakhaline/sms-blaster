@@ -214,7 +214,7 @@ def prepare_statistics_report(result_json_path: str):
 def format_phone_number(phone_number: str):
     """
     converts phone numbers to a desired format
-    (012) 345-6789 -> +10123456789 (add country code).
+    (012) 345-6789 -> +10123456789 (add country code)
     +380671063839 -> +380671063839 (no change)
     """
     phone_number_formatted = ""
