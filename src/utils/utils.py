@@ -49,7 +49,8 @@ def convert_objects_to_string(json_file_path: str):
 def format_phone_number(phone_number: str):
     """
     converts phone numbers to a desired format
-    (012) 345-6789 -> +10123456789, etc.
+    (012) 345-6789 -> +10123456789 (add country code)
+    +380671063839 -> +380671063839 (no change)
     """
     phone_number_formatted = ""
     try:
