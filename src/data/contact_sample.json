@@ -1,0 +1,34 @@
+{
+    "Contact Id": "Wpnqt7CXZAKnsqbSxgR6",
+    "First Name": "Billy",
+    "Last Name": "Smith",
+    "Business Name": "Con Edison",
+    "Company Name": "",
+    "Phone": "+18005225635",
+    "Email": "smithb@coned.com",
+    "Created": "2024-01-14T19:48:47+02:00",
+    "Last Activity": "",
+    "Tags": "good email",
+    "Additional Emails": "",
+    "Additional Phones": "",
+    "null": [
+    ""
+    ],
+
+    "message": null,
+
+    "telnyx_sent": false,
+    "telnyx_delivered": false,
+    "telnyx_message_id": null,
+
+    "twilio_sent": false,
+    "twilio_delivered": false,
+    "twilio_message_id": null,
+
+    "ghl_sent": false,
+    "ghl_delivered": false,
+
+    "sms_delivered": false,
+
+    "sms_sent_at": ""
+}

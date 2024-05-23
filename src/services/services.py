@@ -1,8 +1,8 @@
 import json
 import time
-from logging_config import logger
+from src.logs.logging_config import logger
 import datetime
-import services.telnyx_services as telnyx
+import services.telnyx_service as telnyx
 from services.twilio_services import Twilio
 import services.ghl_services as ghl
 

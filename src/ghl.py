@@ -1,19 +1,9 @@
 import json
 import requests
-from logging_config import logger
+from src.logs.logging_config import logger
 from datetime import datetime
+from pprint import pprint
 
-    # [{"message": "",
-    # "telnyx_sent": false,
-    # "telnyx_delivered": false,
-    # "telnyx_message_id": "null",
-    # "twilio_sent": false,
-    # "twilio_delivered": false,
-    # "twilio_message_id": false,
-    # "ghl_sent": false,
-    # "ghl_delivered": false,
-    # "sms_delivered": false,
-    # "sms_sent_at": "null"}]
 
 with open("auth/.ghl_tokens.json", "r") as file:
     keys = json.load(file)
@@ -27,6 +17,23 @@ REFRESH_TOKEN = keys["refresh_token"]
 
 def get_users_ghl(location_id):
     BASE_URL = f"https://services.leadconnectorhq.com/users/"
+    HEADERS = {
+        'Accept': 'application/json',
+        'Authorization': f'Bearer {ACCESS_TOKEN}',
+        'Version': '2021-04-15'
+    }
+    PARAMS = {
+        "locationId": f"{location_id}"
+    }
+    response = requests.get(url=BASE_URL, headers=HEADERS, params=PARAMS)
+    if response.status_code == 200:
+        return response.text
+    else:
+        return f"{response.status_code}"
+    
+
+def get_contacts(location_id):
+    BASE_URL = f"https://services.leadconnectorhq.com/contacts/"
     HEADERS = {
         'Accept': 'application/json',
         'Authorization': f'Bearer {ACCESS_TOKEN}',
@@ -126,4 +133,4 @@ if __name__ == "__main__":
     # output_file = "/home/sakhaline/ACTSE/frylow/sms_blaster/src/data/processed_contacts.json"
     # main(input_file, output_file)
     
-    print(get_users_ghl(LOCATION_ID))
+    pprint(get_contacts(LOCATION_ID))

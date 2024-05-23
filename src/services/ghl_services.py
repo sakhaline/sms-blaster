@@ -2,7 +2,7 @@ import json
 import time
 import requests
 from pprint import pprint
-from logging_config import logger
+from src.logs.logging_config import logger
 
 
 with open("auth/.ghl_tokens.json", "r") as file:

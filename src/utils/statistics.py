@@ -1,15 +1,12 @@
 import json
-from logging_config import logger
+from logs.logging_config import logger
 from pprint import pprint, pformat
 import datetime
 
-# datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-
-def prepare_statistics_report(result_json_path: str):
+def prepare_statistics_report(result_json_path: str, statistic_json_path: str):
     with open(result_json_path, "r") as f:
         contacts = json.load(f)
-
 
     result = {
         "contacts_total": len(contacts),
@@ -27,13 +24,11 @@ def prepare_statistics_report(result_json_path: str):
 
         "date_time": datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
     }
-
-    logger.info(f"{prepare_statistics_report.__name__} -- PREPARING SMS OUTREACH STATS FOR - {result['contacts_total']} - CONTACTS")
-
+    logger.info(f"PREPARING SMS OUTREACH STATS FOR - {result['contacts_total']} - CONTACTS")
 
     for i, contact in enumerate(contacts, start=1):
 
-        logger.info(f"{prepare_statistics_report.__name__} -- CONTACT # - {i}")
+        logger.info(f"CONTACT # - {i}")
 
         if contact.get("sms_delivered") == True:
             result["contacts_sms_sent"] += 1
@@ -59,15 +54,14 @@ def prepare_statistics_report(result_json_path: str):
         if contact.get("ghl_status") == False:
             result["ghl_failed"] += 1
 
-    with open("data/outreach_statistics.json", "r") as f:
+    with open(statistic_json_path, "r") as f:
         statistics_array: list = json.load(f)
         statistics_array.append(result)
 
-    with open("data/outreach_statistics.json", "w") as f:
+    with open(statistic_json_path, "w") as f:
         json.dump(statistics_array, f)
 
-    logger.info(f"{prepare_statistics_report.__name__} -- STATISTICS PREPARED - {pformat(result)}")
-
+    logger.info(f"STATISTICS PREPARED - {pformat(result)}")
     return result
 
 
