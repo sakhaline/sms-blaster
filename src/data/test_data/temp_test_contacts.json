@@ -15,10 +15,10 @@
         "null": [
             ""
         ],
-        "message": "",
+        "inbound_message": "",
         "telnyx_sent": true,
         "telnyx_delivered": true,
-        "telnyx_message_id": "40318fa6-d2c4-482f-be4b-9f28fbfedf7a",
+        "telnyx_message_id": "40318faa-1bd7-4a4b-b96c-4c59198deb15",
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,

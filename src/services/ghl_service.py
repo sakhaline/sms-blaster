@@ -1,11 +1,17 @@
+import os
 import json
-import time
-import requests
-from pprint import pprint
+from dotenv import load_dotenv
+import requests as req
+
 from src.logs.logging_config import logger
+from src import DATADIR
+
+load_dotenv()
+
+BASEDIR = os.getcwd()
 
 
-with open("auth/.ghl_tokens.json", "r") as file:
+with open(os.path.join(BASEDIR, "src", "auth", ".ghl_tokens.json"), "r") as file:
     keys = json.load(file)
 
 
@@ -15,326 +21,74 @@ ACCESS_TOKEN = keys["access_token"]
 REFRESH_TOKEN = keys["refresh_token"]
 
 
-def get_conversations(ghl_contact_id):
-    """
-    searches for Conversations by Contact ID and returns an Conversation object
-    """
-    logger.info(f"{get_conversations.__name__} -- GHL - GETTING CONVERSATION FOR - {ghl_contact_id}")
-
-    response = requests.get(
-        url=f"https://services.leadconnectorhq.com/conversations/search?contactId={ghl_contact_id}",
-        headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN}",
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Version": "2021-07-28"
-        }
-    )
-
-
-    status_code = response.status_code
-    logger.info(f"{get_conversations.__name__} -- GHL - STATUS CODE -- {status_code}")
-
-    result = {
-        "success": False,
-        "data": None,
-        "conversation_id": None
-    }
-
-    try:
-        response_data = response.json()
-        logger.info(f"{get_conversations.__name__} -- GHL RESPONSE - {response_data}")
-
-        if response_data["total"] > 0:
-
-            result["success"] = True
-            result["data"] = response_data
-            result["conversation_id"] = response_data["conversations"][0]["id"]
-    except Exception as ex:
-        logger.error(f"{get_conversations.__name__} -- !!! GHL ERROR - {ex}")
-
-    return result
-
-
-def create_conversation(ghl_contact_id):
-    """
-    creates conversation for a provided Contact ID
-    """
-    logger.info(f"{create_conversation.__name__} -- GHL - CREATING CONVERSATION FOR - {ghl_contact_id}")
-
-    response = requests.post(
-        url=f"https://services.leadconnectorhq.com/conversations/",
-        headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN}",
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Version": "2021-07-28"
-        },
-        json={
-            "locationId": f"{LOCATION_ID}",
-            "contactId": f"{ghl_contact_id}"
-        }
-    )
-
-    status_code = response.status_code
-    logger.info(f"{create_conversation.__name__} -- GHL - STATUS CODE -- {status_code}")
-
-    result = {
-        "success": False,
-        "data": None,
-        "conversation_id": None
-    }
-
-    try:
-        response_data = response.json()
-        logger.info(f"{create_conversation.__name__} -- GHL RESPONSE - {response_data}")
-
-        result["success"] = True if status_code in (201, 200) and response_data["success"] is True else False
-        result["data"] = response_data
-        result["conversation_id"] = response_data["conversation"]["id"]
-    except Exception as ex:
-        logger.error(f"{create_conversation.__name__} -- !!! GHL ERROR - {ex}")
-
-    return result
-
-
-def add_inbound_message(ghl_conversation_id, message_text):
-    """
-    creates inbound Message in a Conversation for a provided Contact ID
-    """
-    logger.info(f"{add_inbound_message.__name__} -- GHL - ADDING SMS NOTE TO -- {ghl_conversation_id}")
-    response = requests.post(
-        url=f"https://services.leadconnectorhq.com/conversations/messages/inbound",
-        headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN}",
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Version": "2021-07-28"
-        },
-        json={
-            "type": "SMS",
-            "conversationId": f"{ghl_conversation_id}",
-            "message": f"{message_text}",
-            "direction": "inbound"
-        }
-    )
-
-    status_code = response.status_code
-    logger.info(f"{add_inbound_message.__name__} -- GHL - STATUS CODE -- {status_code}")
-
-    result = False
-
-    try:
-        response_data = response.json()
-        logger.info(f"{add_inbound_message.__name__} -- GHL RESPONSE - {response_data}")
-
-        result = True if response_data["success"] is True else False
-    except Exception as ex:
-        logger.error(f"{add_inbound_message.__name__} -- !!! GHL ERROR - {ex}")
-
-    return result
-
-
-# def add_inbound_message(ghl_conversation_id, message_text):
-#     """
-#     creates inbound Message in a Conversation for a provided Contact ID
-#     """
-#     logger.info(f"{add_outbound_message.__name__} -- GHL - ADDING SMS NOTE TO -- {ghl_conversation_id}")
-#     response = requests.post(
-#         url=f"https://services.leadconnectorhq.com/conversations/messages/outbound",
-#         headers={
-#             "Authorization": f"Bearer {ACCESS_TOKEN}",
-#             "Content-Type": "application/json",
-#             "Accept": "application/json",
-#             "Version": "2021-07-28"
-#         },
-#         json={
-#             "type": "SMS",
-#             "conversationId": f"{ghl_conversation_id}",
-#             "message": f"{message_text}",
-#             "direction": "outbound"
-#         }
-#     )
-
-#     status_code = response.status_code
-#     logger.info(f"{add_outbound_message.__name__} -- GHL - STATUS CODE -- {status_code}")
-
-#     result = False
-
-#     try:
-#         response_data = response.json()
-#         logger.info(f"{add_outbound_message.__name__} -- GHL RESPONSE - {response_data}")
-
-#         result = True if response_data["success"] is True else False
-#     except Exception as ex:
-#         logger.error(f"{add_outbound_message.__name__} -- !!! GHL ERROR - {ex}")
-
-#     return result
-
-
-def set_ghl_sms_blast_status(contact_id: str, status: str):
-    """
-    sets SMS sent result status for provided Contact ID
-    """
-    BASE_URL = f"https://services.leadconnectorhq.com/contacts/{contact_id}/"
-    HEADERS = {
-        'Accept': 'application/json',
-        'Authorization': f'Bearer {ACCESS_TOKEN}',
-        'Content-Type': 'application/json',
-        'Version': '2021-07-28'
-    }
-    PAYLOAD = {
-        "customFields": [
-        {
-            "id": "KdiQPtxUnTXWEP4k0PW9",
-            "value": status # success / failed
-        },
-        {
-            "id": "t51MQqbEKlCera44Wgmw",
-            "value": 1 if status.lower() == "success" else 0
-        }
-            ]
-                }
-    logger.info(f"{set_ghl_sms_blast_status.__name__} -- GHL - SETTING STATUS - {status} FOR - {contact_id}")
-
-    response = requests.put(
-        url=BASE_URL, headers=HEADERS,
-        json=PAYLOAD
-    )
-
-    status_code = response.status_code
-    logger.info(f"{set_ghl_sms_blast_status.__name__} -- GHL - STATUS CODE -- {status_code}")
-
-    result = False
-
-    try:
-        response_data = response.json()
-        logger.info(f"{set_ghl_sms_blast_status.__name__} -- GHL RESPONSE - {response_data}")
-
-        result = True if response_data["succeded"] is True else False
-    except Exception as ex:
-        logger.error(f"{set_ghl_sms_blast_status.__name__} -- !!! GHL ERROR - {ex}")
-
-    return result
-
-
-def modify_ghl_conversation(contact_id, sms_message):
-    """
-    handles Conversation modification for a provided Contact ID
-    by defining whether provided Contact has a Conversation
-    """
-
-    logger.info(f"{modify_ghl_conversation.__name__} -- MODIFYING CONTACTs CONVERSATIONS - {contact_id}")
-
-    get_conversation_response = get_conversations(contact_id)
-    time.sleep(0.1)
-
-    if get_conversation_response["success"] is True:
-        conversation_id = get_conversation_response["conversation_id"]
-
-        return True if add_inbound_message(conversation_id, sms_message) is True else False
-    
-    else:
-        create_conversation_response = create_conversation(contact_id)
-        time.sleep(0.1)
-
-        if create_conversation_response["success"] is True:
-            conversation_id = create_conversation_response["conversation_id"]
-
-            return True if add_inbound_message(conversation_id, sms_message) is True else False
-
-
-def delete_conversation(conversation_id: str):
-    """
-    deletes Conversation by proving it's ID
-    """
-    BASE_URL = f"https://services.leadconnectorhq.com/conversations/{conversation_id}"
-    HEADERS = {
-        'Accept': 'application/json',
-        'Authorization': f'Bearer {ACCESS_TOKEN}',
-        'Content-Type': 'application/json',
-        'Version': '2021-04-15'
-    }
-    response = requests.delete(url=BASE_URL, headers=HEADERS)
-
-    status_code = response.status_code
-    data_json = response.json()
-
-    result = {
-        "status_code": status_code,
-        "data": data_json
-    }
-
-    logger.info(f"\n{delete_conversation.__name__} -- GHL RESPONSE - {result}")
-    return result
-
-
-def send_sms_ghl(contact_id: str, message: str):
-    """
-    sends single SMS message with GHL
-    """
-    BASE_URL = f"https://services.leadconnectorhq.com/conversations/messages"
-    HEADERS = {
-        'Accept': 'application/json',
-        'Authorization': f'Bearer {ACCESS_TOKEN}',
-        'Content-Type': 'application/json',
-        'Version': '2021-04-15'
-    }
-    PAYLOAD = {
-        "type": "SMS",
-        "contactId": contact_id,
-        "message": message
-    }
-    response = requests.post(url=BASE_URL, headers=HEADERS, json=PAYLOAD)
-    
-    status_code = response.status_code
-    logger.info(f"{send_sms_ghl.__name__} -- GHL - STATUS CODE -- {status_code}")
-
-    result = False
-
-    try:
-        response_data = response.json()
-        logger.info(f"{send_sms_ghl.__name__} -- GHL RESPONSE - {response_data}")
-
-        result = True if status_code in (201, 200) else False
-    except Exception as ex:
-        logger.error(f"{send_sms_ghl.__name__} -- !!! GHL ERROR - {ex}")
-
-    return result
-
-
-def get_ghl_contacts():
-    BASE_URL = "https://rest.gohighlevel.com/v1/contacts/?limit=20"
-    HEADERS = {
-        'Authorization': f'Bearer {API_KEY}',
-    }
-    response = requests.get(url=BASE_URL, headers=HEADERS)
-    data_json = response.json()
-    status_code = response.status_code
-
-    result = {
-        "status_code": status_code,
-        "data": data_json
-    }
-
-    logger.info(f"{get_ghl_contacts.__name__} -- GHL RESPONSE - {result}")
-
-    return result
-
-
-
-if __name__ == "__main__":
-    
-    # conversations = get_conversations("4jGvEwBIInorbmHszdyF")
-
-    # create_conversation("4jGvEwBIInorbmHszdyF")
-# 
-    add_inbound_message("Y4ouF1FodLLR2OU2uitm", "Test Message")
-
-
-
-
-
+class GHLService:
+    def __init__(self):
+        self.url = "https://services.leadconnectorhq.com/"
+        self.headers = {"Authorization": f"Bearer {ACCESS_TOKEN}",
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "Version": "2021-07-28"}
+        self.location_id = LOCATION_ID
+
+    def create_conversation(self, contact_id):
+        response = req.post(url=f"{self.url}conversations/",
+                            headers=self.headers,
+                            json={"locationId": self.location_id,
+                                  "contactId": f"{contact_id}"})
         
+        if response.status_code == 201:
+            logger.info(f"SUCCESSFULLY CREATED GHL CONVERSATION FOR CONTACT: #{contact_id}")
+            return response.json()["conversation"]["id"]
+        else:
+            logger.error(f"FAIL TO CREATE GHL CONVERSATION. ERROR: {response.text}")
 
+    def add_inbound_message(self, conversation_id, message_text):
+        data = {"type": "SMS",
+                "conversationId": f"{conversation_id}",
+                "message": f"{message_text}",
+                "direction": "inbound"}
+
+        response = req.post(url=f"{self.url}conversations/messages/inbound",
+                            headers=self.headers,
+                            json=data)
+        if response.status_code == 200:
+            logger.info(f"SUCCESSFULLY ADDED SMS NOTE TO CONVERSATION: #{conversation_id}")
+            return response.json()
+        else:
+            logger.error(f"FAIL TO ADD INBOUND MESSAGE. ERROR: {response.text}")
+
+    def set_sms_blast_status(self, contact_id: str, status: str = "Success"):
+        data = {"customFields": [{"id": "KdiQPtxUnTXWEP4k0PW9",
+                                  "value": status}]}
+
+        response = req.put(url=f"{self.url}contacts/{contact_id}/",
+                           headers=self.headers,
+                           json=data)
+
+        if response.status_code == 200:
+            logger.info(f"SUCCESSFULLY SET SMS-BLAST STATUS FOR CONTACT: #{contact_id}")
+            return response.json()
+        else:
+            logger.error(f"FAIL TO SET SMS-BLAST STATUS FOR CONTACT: #{contact_id}. "
+                         f"ERROR: {response.text}")
+
+
+def ghl_processor(webhook_payload):
+    GHL = GHLService()
+    CONTACTS_FILE = os.path.join(DATADIR, "test_data", "temp_test_contacts.json")
+
+    from_number = webhook_payload["data"]["payload"]["from"]["phone_number"]
+    message = webhook_payload["data"]["text"]
+
+    with open(CONTACTS_FILE, "r") as f:
+        contacts = json.load(f)
+    for contact in contacts:
+        contact_number = contact["Phone"]
+        if contact_number == from_number:
+            contact_id = contact_id["id"]
+            conversation_id = GHL.create_conversation(contact_id=contact_id)
+            if conversation_id:
+                result = GHL.add_inbound_message(conversation_id=conversation_id,
+                                                 message_text=message)
+                return result
 
