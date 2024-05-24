@@ -12,23 +12,17 @@
     "Additional Emails": "",
     "Additional Phones": "",
     "null": [
-    ""
+        ""
     ],
-
     "message": null,
-
     "telnyx_sent": false,
     "telnyx_delivered": false,
     "telnyx_message_id": null,
-
     "twilio_sent": false,
     "twilio_delivered": false,
     "twilio_message_id": null,
-
     "ghl_sent": false,
     "ghl_delivered": false,
-
     "sms_delivered": false,
-
     "sms_sent_at": ""
 }

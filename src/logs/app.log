@@ -1,0 +1,110 @@
+2024-05-23 21:20 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:20 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}
+2024-05-23 21:20 UTC - INFO - __main__:telnyx_sender:24 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:20 UTC - ERROR - src.services.telnyx_service:check_delivery_status:30 - FAIL TO CHECK TELNYX DELIVERY STATUS -- {'errors': [{'code': '10006', 'title': 'Invalid ID', 'detail': 'The resource ID provided was invalid.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10006'}}]}
+2024-05-23 21:22 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:22 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '40013', 'title': 'Invalid messaging source number', 'detail': 'The source phone number was deemed invalid by the carrier.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/40013'}}]}
+2024-05-23 21:22 UTC - INFO - __main__:telnyx_sender:24 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:24 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:24 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '40013', 'title': 'Invalid messaging source number', 'detail': 'The source phone number was deemed invalid by the carrier.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/40013'}}]}
+2024-05-23 21:24 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:25 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:25 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}
+2024-05-23 21:25 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:29 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:29 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}
+2024-05-23 21:29 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:30 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:30 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}. STATUS CODE: 400
+2024-05-23 21:30 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:33 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:34 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:34 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:34 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}.
+                         PARAMETER: [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]
+2024-05-23 21:34 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:35 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:35 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}.
+                         PARAMETER: <class 'list'>
+2024-05-23 21:35 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:35 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:35 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}.
+                         PARAMETER: {'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}
+2024-05-23 21:35 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:36 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:36 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:36 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:36 UTC - ERROR - src.services.telnyx_service:send_sms:48 - FAIL TO SEND TELNYX MESSAGE  -- {'errors': [{'code': '10004', 'title': 'Missing required parameter', 'detail': 'Invalid source number.', 'meta': {'url': 'https://developers.telnyx.com/docs/overview/errors/10004'}}]}.
+                         PARAMETER: Invalid source number.
+2024-05-23 21:36 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:48 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:48 UTC - INFO - src.services.telnyx_service:send_sms:44 - SUCCESSFULLY SENT TELNYX MESSAGE TO +380671063738.
+                        MESSAGE ID: 40318fa6-c86f-4b3e-bd23-4a4d4e1abfc5
+2024-05-23 21:48 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:48 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-c86f-4b3e-bd23-4a4d4e1abfc5
+2024-05-23 21:50 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:50 UTC - INFO - src.services.telnyx_service:send_sms:44 - SUCCESSFULLY SENT TELNYX MESSAGE TO +380671063738.
+                        MESSAGE ID: 40318fa6-ca4d-48f7-bea6-ea9fd55ae712
+2024-05-23 21:50 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:50 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-ca4d-48f7-bea6-ea9fd55ae712. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:send_sms:44 - SUCCESSFULLY SENT TELNYX MESSAGE TO +380671063738.
+                        MESSAGE ID: 40318fa6-d263-485d-bd75-02ad0d02c6e2
+2024-05-23 21:59 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d263-485d-bd75-02ad0d02c6e2. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:send_sms:44 - SUCCESSFULLY SENT TELNYX MESSAGE TO +380671063738.
+                        MESSAGE ID: 40318fa6-d2c4-482f-be4b-9f28fbfedf7a
+2024-05-23 21:59 UTC - INFO - __main__:telnyx_sender:25 - CONTACTS UPDATED SUCCESSFULLY!!! ^_^
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 21:59 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS sent
+2024-05-23 22:00 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:00 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:00 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:00 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:00 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:00 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:00 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:01 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:01 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:01 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:01 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:01 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-23 22:01 UTC - INFO - src.services.telnyx_service:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fa6-d2c4-482f-be4b-9f28fbfedf7a. STATUS delivered
+2024-05-24 09:35 UTC - INFO - __main__:index_view:11 - INDEX ENDPOINT TRIGGERED

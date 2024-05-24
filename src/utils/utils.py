@@ -1,7 +1,6 @@
 import json
-from logs.logging_config import logger
+from src.logs.logging_config import logger
 import phonenumbers
-
 
 
 def set_contact_sms_status(contacts_json_path: str, status: bool):
@@ -28,7 +27,6 @@ def get_ids_by_phone(phone_numbers: list, contacts: list):
     returns IDs of contacts, who have not received an SMS
     """
     ids = []
-
     for contact in contacts:
         if contact.get("Phone") in phone_numbers:
             ids.append(contact.get("Contact Id"))
@@ -43,7 +41,6 @@ def convert_objects_to_string(json_file_path: str):
 
     with open(json_file_path, "w") as f:
         json.dump(res, f)
-
 
 
 def format_phone_number(phone_number: str):

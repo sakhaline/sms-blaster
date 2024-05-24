@@ -2,7 +2,7 @@
 import os
 from loguru import logger
 
-from .. import ROOT_DIR
+ROOT_DIR = os.getcwd()
 
 
 logs_file_path = os.path.join(ROOT_DIR, "src", "logs", "app.log")

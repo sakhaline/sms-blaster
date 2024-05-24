@@ -1,0 +1,30 @@
+[
+    {
+        "Contact Id": "ABCDEFGH",
+        "First Name": "Nikita",
+        "Last Name": "Stoliarov",
+        "Business Name": "",
+        "Company Name": "",
+        "Phone": "+380671063738",
+        "Email": "ekrhodes@cableone.net",
+        "Created": "2024-01-08T23:03:20+02:00",
+        "Last Activity": "",
+        "Tags": "mobile, warehouse, rethink",
+        "Additional Emails": "",
+        "Additional Phones": "",
+        "null": [
+            ""
+        ],
+        "message": "",
+        "telnyx_sent": false,
+        "telnyx_delivered": false,
+        "telnyx_message_id": null,
+        "twilio_sent": false,
+        "twilio_delivered": false,
+        "twilio_message_id": false,
+        "ghl_sent": false,
+        "ghl_delivered": false,
+        "sms_delivered": false,
+        "sms_sent_at": null
+    }
+]

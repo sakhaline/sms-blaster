@@ -3,3 +3,5 @@ phonenumbers==8.13.27
 twilio==8.11.1
 python_dotenv
 fastapi[all]
+loguru
+uvicorn
