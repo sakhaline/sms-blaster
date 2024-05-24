@@ -17,7 +17,7 @@
         ],
         "message": "",
         "telnyx_sent": true,
-        "telnyx_delivered": false,
+        "telnyx_delivered": true,
         "telnyx_message_id": "40318fa6-d2c4-482f-be4b-9f28fbfedf7a",
         "twilio_sent": false,
         "twilio_delivered": false,

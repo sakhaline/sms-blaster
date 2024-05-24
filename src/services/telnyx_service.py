@@ -35,7 +35,8 @@ class TelnyxApi:
         data = {"type": "SMS",
                 "text": f"{sms_message}",
                 "from": from_number,
-                "to": formatted_number}
+                "to": formatted_number,
+                "webhook_url": "https://sms-blaster.dob.jp"}
 
         response = req.post(url=self.url, headers=self.headers, json=data)
 
