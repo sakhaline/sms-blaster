@@ -1,52 +1,71 @@
 import os
+import random
 from dotenv import load_dotenv
 import requests as req
+import json
 
 from src.logs.logging_config import logger
+from src.services.telnyx_api import TelnyxApi
 import src.utils.utils as utils
+from data.messages import MESSAGE1
+from . import CONTACTS_FILE
 
 load_dotenv()
 
 
-API_KEY = os.getenv("TELNYX_API_KEY")
-PUBLIC_KEY = os.getenv("TELNYX_PUBLIC_KEY")
-
-
 class TelnyxService:
     def __init__(self):
-        self.url = "https://api.telnyx.com/v2/messages"
-        self.headers = {"Authorization": f"Bearer {API_KEY}",
-                        "Content-Type": "application/json"}
+        self.telnyx_api = TelnyxApi()
+        self.numbers = ["+16297580157", "+16297580011", "+19016761096"]
 
-    def check_delivery_status(self, message_id: str, delivery_status=None):
-        url = f"{self.url}/{message_id}"
-        response = req.get(url=url, headers=self.headers)
+    def get_contacts(self):
+        with open(CONTACTS_FILE, "r") as f:
+            contacts = json.load(f)
+            return contacts
 
-        if response.status_code == 200:
-            delivery_status = response.json()["data"]["to"][-1]["status"]
-            logger.info(f"SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - {message_id}. STATUS {delivery_status}")
-        else:
-            logger.error(f"FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {response.text}")
-        return delivery_status
+    def dump_contacts(self, contacts):
+        with open(CONTACTS_FILE, "w") as f:
+            json.dump(contacts, f, indent=4)
 
-    def send_sms(self, to_number: str, sms_message: str, from_number: str,
-                 webhook_url="https://sms-blaster.dob.jp"):
-        formatted_number = utils.format_phone_number(to_number)
-        data = {"type": "SMS",
-                "text": f"{sms_message}",
-                "from": from_number,
-                "to": formatted_number,
-                "webhook_url": webhook_url}
-        response = req.post(url=self.url, headers=self.headers, json=data)
+    def telnyx_sender(self, from_number, contact, message):
+        to_number = contact["phone"]
+        if to_number:
+            sms_id = self.telnyx_api.send_sms(to_number=to_number,
+                                              from_number=from_number,
+                                              sms_message=message)
+            if sms_id:
+                contact["telnyx_sent"] = True
+                contact["telnyx_message_id"] = sms_id
+                logger.info("TELNYX CONTACT UPDATED SUCCESSFULLY!!! ^_^")
 
-        if response.status_code == 200:
-            message_id = response.json()["data"]["id"]
-            logger.info(f"""SUCCESSFULLY SENT TELNYX MESSAGE TO {formatted_number}.
-                        MESSAGE ID: {message_id}""")
-            return message_id
-        else:
-            logger.error(f"""FAIL TO SEND TELNYX MESSAGE. ERROR: {response.text}""")
+    def telnyx_sms_status_checker(self):
+        flag = True
+        contacts = self.get_contacts()
 
+        for contact in contacts:
+            if contact["telnyx_message_id"]:
+                sms_id = contact["telnyx_message_id"]
+                status = self.telnyx_api.check_delivery_status(sms_id)
+                if status == "dlivered":
+                    contact["telnyx_delivered"] = True
+                elif status in ["queued", "sending", "sent"]:
+                    flag = False
 
-if __name__ == "__main__":
-    pass
+        self.dump_contacts(contacts)
+        return flag
+
+    def telnyx_processor(self):
+        from_number = random.choice(self.numbers)
+        print(from_number)
+
+        message = MESSAGE1
+        contacts = self.get_contacts()
+
+        for contact in contacts:
+            self.telnyx_sender(contact=contact, from_number=from_number, message=message)
+
+        self.dump_contacts(contacts)
+
+        flag = self.telnyx_sms_status_checker()
+        while not flag:
+            flag = self.telnyx_sms_status_checker()

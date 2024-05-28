@@ -2,9 +2,9 @@ import json
 import time
 from src.logs.logging_config import logger
 import datetime
-import services.telnyx_service as telnyx
+import src.services.telnyx_api as telnyx
 from services.twilio_services import Twilio
-import services.ghl_service as ghl
+import src.services.ghl_api as ghl
 
 
 def sms_blaster(contacts_json_path: str):

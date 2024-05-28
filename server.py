@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 import uvicorn
 from src.logs.logging_config import logger
-from src.services.ghl_service import ghl_processor
+from src.services.ghl_service import GHLService
 
 
 app = FastAPI()
@@ -11,12 +11,17 @@ app = FastAPI()
 def telnyx_webhook(request: Request):
     logger.info("WEBHOOK TRIGGERED")
     telnyx_payload = request.json()
-
-    result = ghl_processor(telnyx_payload)
+    ghl_service = GHLService()
+    result = ghl_service.ghl_processor(telnyx_payload)
     if result:
         return {"status": "Success", "message": "Inbound message created successfuly"}
     else:
         return {"status": "Error"}
+
+
+@app.get("/oauth")
+def oauth():
+    return {"success": "True"}
 
 
 if __name__ == "__main__":

@@ -223,3 +223,156 @@
 2024-05-24 13:18 UTC - INFO - src.services.telnyx_service:check_delivery_status:27 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318faa-1bd7-4a4b-b96c-4c59198deb15. STATUS sent
 2024-05-24 13:18 UTC - INFO - src.services.telnyx_service:check_delivery_status:27 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318faa-1bd7-4a4b-b96c-4c59198deb15. STATUS delivery_failed
 2024-05-24 13:27 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-27 10:39 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-27 10:39 UTC - ERROR - src.services.telnyx_api:send_sms:49 - FAIL TO SEND TELNYX MESSAGE. ERROR: {
+  "errors": [
+    {
+      "code": "10010",
+      "title": "Authorization failed",
+      "detail": "Sending phone number '+16297580157' is not associated with the account '279c618d-f76a-441b-861e-376ea14716e2'.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/10010"
+      }
+    }
+  ]
+}
+2024-05-27 10:39 UTC - INFO - src.services.telnyx_api:check_delivery_status:27 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318faa-1bd7-4a4b-b96c-4c59198deb15.
+                        STATUS delivery_failed
+2024-05-27 10:42 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-27 10:42 UTC - ERROR - src.services.telnyx_api:send_sms:49 - FAIL TO SEND TELNYX MESSAGE. ERROR: {
+  "errors": [
+    {
+      "code": "10010",
+      "title": "Authorization failed",
+      "detail": "Sending phone number '+19016761096' is not associated with the account '279c618d-f76a-441b-861e-376ea14716e2'.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/10010"
+      }
+    }
+  ]
+}
+2024-05-27 10:42 UTC - INFO - src.services.telnyx_api:check_delivery_status:27 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318faa-1bd7-4a4b-b96c-4c59198deb15.
+                        STATUS delivery_failed
+2024-05-27 10:43 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-27 10:43 UTC - ERROR - src.services.telnyx_api:send_sms:49 - FAIL TO SEND TELNYX MESSAGE. ERROR: {
+  "errors": [
+    {
+      "code": "40305",
+      "title": "Invalid 'from' address",
+      "detail": "The 'from' address should be string containing a valid number associated with the sending messaging profile.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40305"
+      }
+    }
+  ]
+}
+2024-05-27 10:43 UTC - ERROR - src.services.telnyx_api:check_delivery_status:30 - FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {
+  "errors": [
+    {
+      "code": "40303",
+      "title": "Message not found",
+      "detail": "The message with ID 40318faa-1bd7-4a4b-b96c-4c59198deb15 was not found.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40303"
+      }
+    }
+  ]
+}
+2024-05-27 10:45 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-27 10:45 UTC - ERROR - src.services.telnyx_api:send_sms:49 - FAIL TO SEND TELNYX MESSAGE. ERROR: {
+  "errors": [
+    {
+      "code": "40305",
+      "title": "Invalid 'from' address",
+      "detail": "The 'from' address should be string containing a valid number associated with the sending messaging profile.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40305"
+      }
+    }
+  ]
+}
+2024-05-27 10:45 UTC - ERROR - src.services.telnyx_api:check_delivery_status:30 - FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {
+  "errors": [
+    {
+      "code": "40303",
+      "title": "Message not found",
+      "detail": "The message with ID 40318faa-1bd7-4a4b-b96c-4c59198deb15 was not found.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40303"
+      }
+    }
+  ]
+}
+2024-05-27 10:47 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-27 10:47 UTC - ERROR - src.services.telnyx_api:send_sms:50 - FAIL TO SEND TELNYX MESSAGE. ERROR: {
+  "errors": [
+    {
+      "code": "40305",
+      "title": "Invalid 'from' address",
+      "detail": "The 'from' address should be string containing a valid number associated with the sending messaging profile.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40305"
+      }
+    }
+  ]
+}
+2024-05-27 10:47 UTC - ERROR - src.services.telnyx_api:check_delivery_status:31 - FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {
+  "errors": [
+    {
+      "code": "40303",
+      "title": "Message not found",
+      "detail": "The message with ID 40318faa-1bd7-4a4b-b96c-4c59198deb15 was not found.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40303"
+      }
+    }
+  ]
+}
+2024-05-27 10:49 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +380671063738 - TO - +380671063738
+2024-05-27 10:49 UTC - ERROR - src.services.telnyx_api:send_sms:50 - FAIL TO SEND TELNYX MESSAGE. ERROR: {
+  "errors": [
+    {
+      "code": "40305",
+      "title": "Invalid 'from' address",
+      "detail": "The 'from' address should be string containing a valid number associated with the sending messaging profile.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40305"
+      }
+    }
+  ]
+}
+2024-05-27 10:49 UTC - ERROR - src.services.telnyx_api:check_delivery_status:31 - FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {
+  "errors": [
+    {
+      "code": "40303",
+      "title": "Message not found",
+      "detail": "The message with ID 40318faa-1bd7-4a4b-b96c-4c59198deb15 was not found.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40303"
+      }
+    }
+  ]
+}
+2024-05-27 10:52 UTC - ERROR - src.services.ghl_api:get_contact_list:83 - FAIL TO GET CONTACTS LIST
+2024-05-27 10:53 UTC - ERROR - src.services.ghl_api:get_contact_list:83 - FAIL TO GET CONTACTS LIST: {"statusCode":403,"message":"The token does not have access to this location."}
+2024-05-27 11:05 UTC - ERROR - src.services.ghl_api:get_contact_list:83 - FAIL TO GET CONTACTS LIST: {"statusCode":403,"message":"The token does not have access to this location."}
+2024-05-27 11:06 UTC - ERROR - src.services.ghl_api:get_contact_list:83 - FAIL TO GET CONTACTS LIST: {"statusCode":403,"message":"The token does not have access to this location."}
+2024-05-27 11:11 UTC - ERROR - src.services.ghl_api:get_contact_list:83 - FAIL TO GET CONTACTS LIST: {"statusCode":403,"message":"The token does not have access to this location."}
+2024-05-27 11:17 UTC - ERROR - src.services.ghl_api:get_contact_list:83 - FAIL TO GET CONTACTS LIST: {"statusCode":403,"message":"The token does not have access to this location."}
+2024-05-27 11:21 UTC - INFO - src.services.ghl_api:get_contact_list:81 - SUCCESSFULLY GOT CONTACTS LIST
+2024-05-27 11:21 UTC - INFO - src.services.ghl_api:get_contact_list:81 - SUCCESSFULLY GOT CONTACTS LIST
+2024-05-27 11:24 UTC - INFO - src.services.ghl_api:get_contact_list:81 - SUCCESSFULLY GOT CONTACTS LIST
+2024-05-27 11:29 UTC - INFO - src.services.ghl_api:get_contact_list:81 - SUCCESSFULLY GOT CONTACTS LIST
+2024-05-27 11:29 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +17404461111 - TO - +17404461111
+2024-05-27 11:29 UTC - ERROR - src.services.telnyx_api:send_sms:50 - FAIL TO SEND TELNYX MESSAGE. ERROR: {
+  "errors": [
+    {
+      "code": "40305",
+      "title": "Invalid 'from' address",
+      "detail": "The 'from' address should be string containing a valid number associated with the sending messaging profile.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40305"
+      }
+    }
+  ]
+}
