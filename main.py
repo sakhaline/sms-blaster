@@ -12,7 +12,7 @@ from src.logs.logging_config import logger
 TELNYX = TelnyxService()
 GHL = GHLService()
 GHLAPI = GHLApi()
-contacts_file = os.path.join(DATADIR, "test_data", "temp_test_contacts.json")
+contacts_file = os.path.join(DATADIR, "contacts.json")
 
 
 def generate_correct_contacts_json(contacts):

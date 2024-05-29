@@ -1,0 +1,10 @@
+{
+    "from": "+16297580157",
+    "messaging_profile_id": "40018fc0-1345-4910-9c4b-07175988d9c9",
+    "to": "+380671063738", 
+    "text": "Hello, World!",
+    "subject": "From Telnyx!",
+    "webhook_url": "https://sms-blaster.dob.jp",
+    "use_profile_webhooks": true,
+    "type": "SMS"
+  }

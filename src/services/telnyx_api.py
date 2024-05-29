@@ -17,7 +17,7 @@ class TelnyxApi:
         self.url = "https://api.telnyx.com/v2/messages"
         self.headers = {"Authorization": f"Bearer {API_KEY}",
                         "Content-Type": "application/json"}
-        print(API_KEY)
+        self.profile_id = "40018fc0-1345-4910-9c4b-07175988d9c9"
 
     def check_delivery_status(self, message_id: str, delivery_status=None):
         url = f"{self.url}/{message_id}"
@@ -38,12 +38,13 @@ class TelnyxApi:
                 "text": f"{sms_message}",
                 "from": from_number,
                 "to": formatted_number,
+                "messaging_profile_id": self.profile_id,
                 "webhook_url": webhook_url}
         response = req.post(url=self.url, headers=self.headers, json=data)
 
         if response.status_code == 200:
             message_id = response.json()["data"]["id"]
-            logger.info(f"""SUCCESSFULLY SENT TELNYX MESSAGE TO {formatted_number}.
+            logger.info(f"""SUCCESSFULLY SENT TELNYX MESSAGE TO {from_number}.
                         MESSAGE ID: {message_id}""")
             return message_id
         else:

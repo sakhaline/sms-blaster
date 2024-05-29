@@ -46,7 +46,7 @@ class TelnyxService:
             if contact["telnyx_message_id"]:
                 sms_id = contact["telnyx_message_id"]
                 status = self.telnyx_api.check_delivery_status(sms_id)
-                if status == "dlivered":
+                if status == "delivered":
                     contact["telnyx_delivered"] = True
                 elif status in ["queued", "sending", "sent"]:
                     flag = False

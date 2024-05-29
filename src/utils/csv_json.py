@@ -1,6 +1,6 @@
 import csv
 import json
-from logs.logging_config import logger
+from src.logs.logging_config import logger
 
 
 def convert_csv_to_json(csv_path: str, json_path: str):
@@ -38,5 +38,6 @@ def convert_csv_to_json(csv_path: str, json_path: str):
     return data
 
 
-if __name__ == "__main__":
-    convert_csv_to_json("data/contacts.csv", "data/contacts.json")
+# if __name__ == "__main__":
+#     # convert_csv_to_json("/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/test_data/contacts-10000.csv",
+#     #                     "/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/contacts.json")
