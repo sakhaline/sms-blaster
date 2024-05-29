@@ -1,28 +1,29 @@
-from fastapi import FastAPI, Request
-import uvicorn
+from flask import Flask, request, jsonify
 from src.logs.logging_config import logger
 from src.services.ghl_service import GHLService
 
-
-app = FastAPI()
-
-
-@app.post("/")
-def telnyx_webhook(request: Request):
-    logger.info("WEBHOOK TRIGGERED")
-    telnyx_payload = request.json()
-    ghl_service = GHLService()
-    result = ghl_service.ghl_processor(telnyx_payload)
-    if result:
-        return {"status": "Success", "message": "Inbound message created successfuly"}
-    else:
-        return {"status": "Error"}
+app = Flask(__name__)
 
 
-@app.get("/oauth")
+@app.route("/", methods=["POST"])
+def telnyx_webhook():
+    try:
+        logger.info("WEBHOOK TRIGGERED")
+
+        telnyx_payload = request.json
+        ghl_service = GHLService()
+        result = ghl_service.ghl_processor(telnyx_payload)
+        if result:
+            return jsonify({"status": "Success", "message": "Inbound message created successfuly"})
+        else:
+            return jsonify({"status": "Error"})
+    except Exception as e:
+        logger.error(f"Error processing webhook: {e}")
+        return jsonify({"status": "Error", "message": "Internal Server Error"}), 500
+
+@app.route("/oauth", methods=["GET"])
 def oauth():
-    return {"success": "True"}
-
+    return jsonify({"success": True})
 
 if __name__ == "__main__":
-    uvicorn.run(app=app, host="127.0.0.1", port=5000)
+    app.run(host="0.0.0.0", port=5000)
