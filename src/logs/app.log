@@ -1,1 +1,17 @@
 2024-05-29 14:13 UTC - INFO - src.utils.csv_json:convert_csv_to_json:37 - CONVERTED CSV [/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/test_data/contacts-10000.csv] TO JSON [/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/contacts.json]
+2024-05-29 12:08 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
+2024-05-29 12:08 UTC - ERROR - __main__:telnyx_webhook:22 - Error processing webhook: 'NoneType' object has no attribute 'resume_reading'
+2024-05-29 12:08 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
+2024-05-29 12:08 UTC - ERROR - __main__:telnyx_webhook:22 - Error processing webhook: 'NoneType' object has no attribute 'resume_reading'
+2024-05-29 12:08 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
+2024-05-29 12:08 UTC - ERROR - __main__:telnyx_webhook:22 - Error processing webhook: 'NoneType' object has no attribute 'resume_reading'
+2024-05-29 12:08 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
+2024-05-29 12:08 UTC - ERROR - __main__:telnyx_webhook:22 - Error processing webhook: 'NoneType' object has no attribute 'resume_reading'
+2024-05-29 12:10 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
+2024-05-29 12:10 UTC - ERROR - __main__:telnyx_webhook:22 - Error processing webhook: 'NoneType' object has no attribute 'resume_reading'
+2024-05-29 12:10 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
+2024-05-29 12:10 UTC - ERROR - __main__:telnyx_webhook:22 - Error processing webhook: 'NoneType' object has no attribute 'resume_reading'
+2024-05-29 12:15 UTC - INFO - __main__:telnyx_webhook:10 - WEBHOOK TRIGGERED
+2024-05-29 12:15 UTC - ERROR - __main__:telnyx_webhook:19 - Error processing webhook: 'text'
+2024-05-29 12:15 UTC - INFO - __main__:telnyx_webhook:10 - WEBHOOK TRIGGERED
+2024-05-29 12:15 UTC - ERROR - __main__:telnyx_webhook:19 - Error processing webhook: 'text'
