@@ -4,6 +4,7 @@ from src.services.ghl_service import GHLService
 
 app = Flask(__name__)
 
+
 @app.route("/", methods=["POST"])
 def telnyx_webhook():
     try:

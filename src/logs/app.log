@@ -1,4 +1,5 @@
 2024-05-29 14:13 UTC - INFO - src.utils.csv_json:convert_csv_to_json:37 - CONVERTED CSV [/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/test_data/contacts-10000.csv] TO JSON [/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/contacts.json]
+<<<<<<< HEAD
 2024-05-29 12:08 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
 2024-05-29 12:08 UTC - ERROR - __main__:telnyx_webhook:22 - Error processing webhook: 'NoneType' object has no attribute 'resume_reading'
 2024-05-29 12:08 UTC - INFO - __main__:telnyx_webhook:13 - WEBHOOK TRIGGERED
@@ -15,3 +16,23 @@
 2024-05-29 12:15 UTC - ERROR - __main__:telnyx_webhook:19 - Error processing webhook: 'text'
 2024-05-29 12:15 UTC - INFO - __main__:telnyx_webhook:10 - WEBHOOK TRIGGERED
 2024-05-29 12:15 UTC - ERROR - __main__:telnyx_webhook:19 - Error processing webhook: 'text'
+=======
+2024-05-29 15:08 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +15874016373 - TO - +15874016373
+2024-05-29 15:08 UTC - INFO - src.services.telnyx_api:send_sms:47 - SUCCESSFULLY SENT TELNYX MESSAGE TO +16297580011.
+                        MESSAGE ID: 40318fc4-401f-4f3a-beeb-67ffd05bf33f
+2024-05-29 15:08 UTC - INFO - src.services.telnyx_service:telnyx_sender:39 - TELNYX CONTACT UPDATED SUCCESSFULLY!!! ^_^
+2024-05-29 15:08 UTC - INFO - src.services.telnyx_api:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fc4-401f-4f3a-beeb-67ffd05bf33f.
+                        STATUS sent
+2024-05-29 15:08 UTC - ERROR - src.services.telnyx_api:check_delivery_status:31 - FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {
+  "errors": [
+    {
+      "code": "40303",
+      "title": "Message not found",
+      "detail": "The message with ID 40318fc4-401f-4f3a-beeb-67ffd05bf33f was not found.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40303"
+      }
+    }
+  ]
+}
+>>>>>>> 315a480b61aa937bbf3d949a3aa33bdeaf2c5c5f

@@ -22,12 +22,14 @@ class GHLService:
 
     def ghl_processor(self, webhook_payload):
         from_number = webhook_payload["data"]["payload"]["from"]["phone_number"]
+        logger.debug(webhook_payload["data"])
         message = webhook_payload["data"]["text"]
         contacts = self.get_contacts()
 
         for contact in contacts:
             contact_number = contact["Phone"]
             if contact_number == from_number:
+                logger.debug(contact)
                 contact_id = contact_id["id"]
                 conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
                 if conversation_id:
