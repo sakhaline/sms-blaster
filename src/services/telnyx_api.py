@@ -32,7 +32,7 @@ class TelnyxApi:
         return delivery_status
 
     def send_sms(self, to_number: str, sms_message: str, from_number: str,
-                 webhook_url="https://sms-blaster.dob.jp"):
+                 webhook_url="http://185.69.153.62:5000/"):
         formatted_number = utils.format_phone_number(to_number)
         data = {"type": "SMS",
                 "text": f"{sms_message}",
