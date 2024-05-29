@@ -1,1 +1,19 @@
 2024-05-29 14:13 UTC - INFO - src.utils.csv_json:convert_csv_to_json:37 - CONVERTED CSV [/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/test_data/contacts-10000.csv] TO JSON [/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/contacts.json]
+2024-05-29 15:08 UTC - INFO - src.utils.utils:format_phone_number:57 - FORMATTED PHONE NUMBER -- FROM - +15874016373 - TO - +15874016373
+2024-05-29 15:08 UTC - INFO - src.services.telnyx_api:send_sms:47 - SUCCESSFULLY SENT TELNYX MESSAGE TO +16297580011.
+                        MESSAGE ID: 40318fc4-401f-4f3a-beeb-67ffd05bf33f
+2024-05-29 15:08 UTC - INFO - src.services.telnyx_service:telnyx_sender:39 - TELNYX CONTACT UPDATED SUCCESSFULLY!!! ^_^
+2024-05-29 15:08 UTC - INFO - src.services.telnyx_api:check_delivery_status:28 - SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - 40318fc4-401f-4f3a-beeb-67ffd05bf33f.
+                        STATUS sent
+2024-05-29 15:08 UTC - ERROR - src.services.telnyx_api:check_delivery_status:31 - FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {
+  "errors": [
+    {
+      "code": "40303",
+      "title": "Message not found",
+      "detail": "The message with ID 40318fc4-401f-4f3a-beeb-67ffd05bf33f was not found.",
+      "meta": {
+        "url": "https://developers.telnyx.com/docs/overview/errors/40303"
+      }
+    }
+  ]
+}
