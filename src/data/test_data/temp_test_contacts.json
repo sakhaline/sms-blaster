@@ -16,9 +16,9 @@
             ""
         ],
         "message": null,
-        "telnyx_sent": true,
-        "telnyx_delivered": true,
-        "telnyx_message_id": "40318fca-2313-497d-a90a-a09666d476ed",
+        "telnyx_sent": false,
+        "telnyx_delivered": false,
+        "telnyx_message_id": false,
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,
@@ -29,7 +29,7 @@
     },
     {
         "Contact Id": "fQ1t4TM0WmWi9JwgfEvf",
-        "First Name": "Test2",
+        "First Name": "Test1",
         "Last Name": "Test2",
         "Business Name": "",
         "Company Name": "",
@@ -44,9 +44,9 @@
             ""
         ],
         "message": null,
-        "telnyx_sent": true,
+        "telnyx_sent": false,
         "telnyx_delivered": false,
-        "telnyx_message_id": "40318fca-2316-4afc-b78b-2d1798f8c3b4",
+        "telnyx_message_id": false,
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,
@@ -56,3 +56,4 @@
         "sms_sent_at": null
     }
 ]
+
