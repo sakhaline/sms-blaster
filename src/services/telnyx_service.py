@@ -37,9 +37,9 @@ class TelnyxService:
             if sms_id:
                 contact["telnyx_sent"] = True
                 contact["telnyx_message_id"] = sms_id
-                logger.info(f"CONTACT WITH ID - #{contact["Contact Id"]} UPDATED SUCCESSFULLY!!! ^_^")
+                logger.info(f"CONTACT WITH ID - #{contact['Contact Id']} UPDATED SUCCESSFULLY!!! ^_^")
         else:
-            logger.warning(f"CONTACT WITH ID - #{contact["Contact Id"]} HAS NO NUMBER")
+            logger.warning(f"CONTACT WITH ID - #{contact['Contact Id']} HAS NO NUMBER")
 
     def telnyx_sms_status_checker(self):
         flag = True
