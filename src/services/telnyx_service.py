@@ -62,7 +62,7 @@ class TelnyxService:
         contacts = self.get_contacts()
 
         for contact in contacts:
-            if contact["telnyx_sent"] != False:
+            if contact["telnyx_sent"] == False:
                 self.telnyx_sender(contact=contact, from_number=from_number, message=message)
                 sleep(3)
 
