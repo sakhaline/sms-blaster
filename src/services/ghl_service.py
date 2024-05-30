@@ -14,7 +14,8 @@ class GHLService:
 
     def get_contacts(self):
         with open(CONTACTS_FILE, "r") as f:
-            self.contacts = json.load(f)
+            contacts = json.load(f)
+        return contacts
 
     def dump_contacts(self, contacts):
         with open(CONTACTS_FILE, "w") as f:
@@ -23,14 +24,14 @@ class GHLService:
     def ghl_processor(self, webhook_payload):
         from_number = webhook_payload["data"]["payload"]["from"]["phone_number"]
         logger.debug(webhook_payload["data"])
-        message = webhook_payload["data"]["text"]
+        message = webhook_payload["data"]["payload"]["text"]
         contacts = self.get_contacts()
 
         for contact in contacts:
             contact_number = contact["Phone"]
             if contact_number == from_number:
                 logger.debug(contact)
-                contact_id = contact_id["id"]
+                contact_id = contact["Contact Id"]
                 conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
                 if conversation_id:
                     result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
