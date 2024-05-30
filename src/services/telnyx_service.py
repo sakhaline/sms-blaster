@@ -1,4 +1,5 @@
 import os
+from time import sleep
 import random
 from dotenv import load_dotenv
 import requests as req
@@ -62,6 +63,7 @@ class TelnyxService:
 
         for contact in contacts:
             self.telnyx_sender(contact=contact, from_number=from_number, message=message)
+            sleep(3)
 
         self.dump_contacts(contacts)
 

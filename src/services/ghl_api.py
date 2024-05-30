@@ -51,7 +51,7 @@ class GHLApi:
         response = req.post(url=f"{self.url}conversations/messages/inbound",
                             headers=self.headers,
                             json=data)
-        if response.status_code == 200:
+        if response.status_code == 200 or response.status_code == 201:
             logger.info(f"SUCCESSFULLY ADDED SMS NOTE TO CONVERSATION: #{conversation_id}")
             return response.json()
         else:

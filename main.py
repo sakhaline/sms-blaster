@@ -6,14 +6,14 @@ from src.services.ghl_api import GHLApi
 from src.services.ghl_service import GHLService
 from src.services.telnyx_service import TelnyxService
 from src.logs.logging_config import logger
+from src.services import CONTACTS_FILE
 
 
 
 TELNYX = TelnyxService()
 GHL = GHLService()
 GHLAPI = GHLApi()
-# contacts_file = os.path.join(DATADIR, "contacts.json")
-contacts_file = os.path.join(DATADIR, "test_data", "temp_test_contacts.json")
+
 
 
 def generate_correct_contacts_json(contacts):
@@ -24,7 +24,7 @@ def generate_correct_contacts_json(contacts):
         contact["telnyx_message_id"] = ""
         contact["ghl_sent"] = False
         contact["ghl_delivered"] = False
-    with open(contacts_file, "w") as f:
+    with open(CONTACTS_FILE, "w") as f:
         json.dump(contacts, f, indent=4)
 
 
