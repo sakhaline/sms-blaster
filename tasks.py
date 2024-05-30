@@ -1,6 +1,5 @@
 import os
 from celery_config import app
-from src.auth import AUTHDATA_DIR
 from src.auth.ghl_authenticator import refresh_auth_token
 
 
