@@ -28,7 +28,7 @@ class TelnyxService:
             json.dump(contacts, f, indent=4)
 
     def telnyx_sender(self, from_number, contact, message):
-        to_number = contact["phone"]
+        to_number = contact["Phone"]
         if to_number:
             sms_id = self.telnyx_api.send_sms(to_number=to_number,
                                               from_number=from_number,
@@ -56,7 +56,6 @@ class TelnyxService:
 
     def telnyx_processor(self):
         from_number = random.choice(self.numbers)
-        print(from_number)
 
         message = MESSAGE1
         contacts = self.get_contacts()

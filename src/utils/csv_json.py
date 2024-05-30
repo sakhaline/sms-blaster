@@ -36,8 +36,3 @@ def convert_csv_to_json(csv_path: str, json_path: str):
 
     logger.info(f"CONVERTED CSV [{csv_path}] TO JSON [{json_path}]")
     return data
-
-
-# if __name__ == "__main__":
-#     # convert_csv_to_json("/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/test_data/contacts-10000.csv",
-#     #                     "/home/sakhaline/ACTSE/davydov/sms_blaster/src/data/contacts.json")

@@ -31,7 +31,7 @@ class GHLService:
             contact_number = contact["phone"]
             if contact_number == from_number:
                 logger.debug(contact)
-                contact_id = contact_id["id"]
+                contact_id = contact["Contact Id"]
                 conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
                 if conversation_id:
                     result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
