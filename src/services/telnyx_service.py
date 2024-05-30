@@ -62,8 +62,9 @@ class TelnyxService:
         contacts = self.get_contacts()
 
         for contact in contacts:
-            self.telnyx_sender(contact=contact, from_number=from_number, message=message)
-            sleep(3)
+            if contact["telnyx_sent"] != False:
+                self.telnyx_sender(contact=contact, from_number=from_number, message=message)
+                sleep(3)
 
         self.dump_contacts(contacts)
 
