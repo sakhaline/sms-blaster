@@ -16,7 +16,6 @@ GHLAPI = GHLApi()
 contacts_file = os.path.join(DATADIR, "test_data", "temp_test_contacts.json")
 
 
-
 def generate_correct_contacts_json(contacts):
     for contact in contacts:
         contact["message"] = ""
