@@ -1,7 +1,10 @@
+import os
 import json
 import requests
 import datetime
 
+
+cwd = os.getcwd()
 
 def refresh_auth_token(tokens_json_path: str):
     """
@@ -37,7 +40,8 @@ def refresh_auth_token(tokens_json_path: str):
 
 
 if __name__ == "__main__":
-    if refresh_auth_token("/home/sakhaline/ACTSE/davydov/sms_blaster/src/auth/.ghl_tokens.json"):
+    filepath = os.path.join(cwd, "src", "auth", ".ghl_tokens.json")
+    if refresh_auth_token(filepath):
         print(True)
     else:
         print(False)

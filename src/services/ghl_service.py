@@ -28,7 +28,7 @@ class GHLService:
         contacts = self.get_contacts()
 
         for contact in contacts:
-            contact_number = contact["phone"]
+            contact_number = contact["Phone"]
             if contact_number == from_number:
                 logger.debug(contact)
                 contact_id = contact["Contact Id"]
