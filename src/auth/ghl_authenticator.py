@@ -2,6 +2,7 @@ import os
 import json
 import requests
 import datetime
+from src.logs.logging_config import logger
 
 
 cwd = os.getcwd()
@@ -35,8 +36,9 @@ def refresh_auth_token(tokens_json_path: str):
             get_keys["refreshed_at"] = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M')
             json.dump(get_keys, file, indent=4)
 
-        return True
-    return False
+        logger.info("Token refreshed successfully!!! ^_^")
+    else:
+        logger.error("Failed to refresh token")
 
 
 if __name__ == "__main__":
