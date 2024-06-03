@@ -51,10 +51,9 @@ class TelnyxService:
                 status = self.telnyx_api.check_delivery_status(sms_id)
                 if status == "delivered":
                     contact["telnyx_delivered"] = True
+                    self.dump_contacts(contacts)
                 elif status in ["queued", "sending", "sent"]:
                     flag = False
-
-        self.dump_contacts(contacts)
         return flag
 
     def telnyx_processor(self):
@@ -67,8 +66,7 @@ class TelnyxService:
             if contact["telnyx_sent"] == False:
                 self.telnyx_sender(contact=contact, from_number=from_number, message=message)
                 sleep(3)
-
-        self.dump_contacts(contacts)
+            self.dump_contacts(contacts)
 
         flag = self.telnyx_sms_status_checker()
         while not flag:

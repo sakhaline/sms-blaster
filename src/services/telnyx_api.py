@@ -27,9 +27,10 @@ class TelnyxApi:
             delivery_status = response.json()["data"]["to"][-1]["status"]
             logger.info(f"""SUCCESSFULLY CHECKED TELNYX DELIVERY STATUS FOR - {message_id}.
                         STATUS {delivery_status}""")
+            return delivery_status
         else:
             logger.error(f"FAIL TO CHECK TELNYX DELIVERY STATUS. ERROR:  {response.text}")
-        return delivery_status
+
 
     def send_sms(self, to_number: str, sms_message: str, from_number: str,
                  webhook_url="http://185.69.153.62:5000/"):

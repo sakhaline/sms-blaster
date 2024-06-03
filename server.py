@@ -6,9 +6,10 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=["POST"])
-def telnyx_webhook():
+def ghl_webhook():
+    logger.debug("WEBHOOK PAYLOAD")
     try:
-        logger.info("WEBHOOK TRIGGERED")
+        logger.debug("WEBHOOK TRIGGERED")
         telnyx_payload = request.json
         ghl_service = GHLService()
         result = ghl_service.ghl_processor(telnyx_payload)

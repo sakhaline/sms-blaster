@@ -30,7 +30,7 @@ class GHLService:
         for contact in contacts:
             contact_number = contact["Phone"]
             if contact_number == from_number:
-                logger.debug(contact)
+                logger.debug(f"CONTACT HAS SENT MESSAGE: {contact}")
                 contact_id = contact["Contact Id"]
                 conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
                 if conversation_id:
@@ -40,5 +40,5 @@ class GHLService:
                         contact["ghl_sent"] = True
                         contact["ghl_delivered"] = True
                         logger.info("GHL CONTACT UPDATED SUCCESSFULLY!!! ^_^")
+                self.dump_contacts(contacts)
                 break
-        self.dump_contacts(contacts)
