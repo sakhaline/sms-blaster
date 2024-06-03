@@ -20945,3 +20945,11 @@
 2024-06-02 13:04 UTC - ERROR - src.services.ghl_api:create_conversation:43 - FAIL TO CREATE GHL CONVERSATION. ERROR: {"message":"Invalid JWT","error":"Unauthorized","statusCode":401}
 2024-06-03 10:13 UTC - INFO - src.auth.ghl_authenticator:refresh_auth_token:39 - Token refreshed successfully!!! ^_^
 2024-06-03 10:13 UTC - INFO - src.auth.ghl_authenticator:refresh_auth_token:39 - Token refreshed successfully!!! ^_^
+2024-06-03 15:23 UTC - DEBUG - __main__:ghl_webhook:10 - WEBHOOK PAYLOAD
+2024-06-03 15:23 UTC - DEBUG - __main__:ghl_webhook:12 - WEBHOOK TRIGGERED
+2024-06-03 15:23 UTC - DEBUG - src.services.ghl_service:ghl_processor:26 - {'event_type': 'message.received', 'id': '9b1216c8-fb17-4ee8-ad1e-dff5ff3a4$
+2024-06-03 15:23 UTC - DEBUG - src.services.ghl_service:ghl_processor:34 - CONTACT HAS SENT MESSAGE: {'Contact Id': '5rq88pVVjeF06DTeEUrK', 'First Nam$
+2024-06-03 15:23 UTC - INFO - src.services.ghl_api:create_conversation:40 - SUCCESSFULLY CREATED GHL CONVERSATION FOR CONTACT: #5rq88pVVjeF06DTeEUrK
+2024-06-03 15:23 UTC - INFO - src.services.ghl_api:add_inbound_message:55 - SUCCESSFULLY ADDED SMS NOTE TO CONVERSATION: #pIw14FqdBK05dTOIhlk0
+2024-06-03 15:23 UTC - INFO - src.services.ghl_service:ghl_processor:45 - GHL CONTACT UPDATED SUCCESSFULLY!!! ^_^
+
