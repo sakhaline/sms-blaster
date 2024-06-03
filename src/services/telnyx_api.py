@@ -44,7 +44,7 @@ class TelnyxApi:
 
         if response.status_code == 200:
             message_id = response.json()["data"]["id"]
-            logger.info(f"""SUCCESSFULLY SENT TELNYX MESSAGE TO {from_number}.
+            logger.info(f"""SUCCESSFULLY SENT TELNYX MESSAGE TO {formatted_number}.
                         MESSAGE ID: {message_id}""")
             return message_id
         else:
