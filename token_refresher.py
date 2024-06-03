@@ -13,7 +13,7 @@ def refresher():
     refresh_auth_token(secret_path)
 
 
-schedule.every(5).seconds.do(refresher)
+schedule.every(6).hours.do(refresher)
 
 while True:
     schedule.run_pending()

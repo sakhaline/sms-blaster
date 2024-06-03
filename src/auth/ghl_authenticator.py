@@ -1,8 +1,11 @@
+import os
 import json
 import requests
 import datetime
 from src.logs.logging_config import logger
 
+
+cwd = os.getcwd()
 
 def refresh_auth_token(tokens_json_path: str):
     """

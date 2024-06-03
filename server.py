@@ -9,7 +9,6 @@ app = Flask(__name__)
 def telnyx_webhook():
     try:
         logger.info("WEBHOOK TRIGGERED")
-
         telnyx_payload = request.json
         ghl_service = GHLService()
         result = ghl_service.ghl_processor(telnyx_payload)

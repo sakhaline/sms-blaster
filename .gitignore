@@ -6,3 +6,4 @@ venv
 .ghl_tokens.json
 .important.txt
 venv
+src/logs/app.log
