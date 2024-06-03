@@ -24,6 +24,7 @@ class GHLService:
     def ghl_processor(self, webhook_payload):
         from_number = webhook_payload["data"]["payload"]["from"]["phone_number"]
         logger.debug(webhook_payload["data"])
+        mwssage_id = webhook_payload["data"]["payload"]["id"]
         message = webhook_payload["data"]["payload"]["text"]
         contacts = self.get_contacts()
 
@@ -37,6 +38,8 @@ class GHLService:
                     result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
                                                               message_text=message)
                     if result:
+                        contact["telnyx_message_id"] = mwssage_id
+                        contact["message"] = message
                         contact["ghl_sent"] = True
                         contact["ghl_delivered"] = True
                         logger.info("GHL CONTACT UPDATED SUCCESSFULLY!!! ^_^")
