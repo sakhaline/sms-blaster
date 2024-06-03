@@ -16,18 +16,6 @@ GHLAPI = GHLApi()
 
 
 
-def generate_correct_contacts_json(contacts):
-    for contact in contacts:
-        contact["message"] = ""
-        contact["telnyx_sent"] = False
-        contact["telnyx_delivered"] = False
-        contact["telnyx_message_id"] = ""
-        contact["ghl_sent"] = False
-        contact["ghl_delivered"] = False
-    with open(CONTACTS_FILE, "w") as f:
-        json.dump(contacts, f, indent=4)
-
-
 if __name__ == "__main__":
     TELNYX.telnyx_processor()
     # contacts = GHLAPI.get_contact_list()
