@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST"])
 def ghl_webhook():
-    logger.debug("WEBHOOK PAYLOAD")
+    logger.debug(f"WEBHOOK PAYLOAD: \n {request.json}")
     try:
         logger.debug("WEBHOOK TRIGGERED")
         telnyx_payload = request.json
