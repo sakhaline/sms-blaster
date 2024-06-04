@@ -20,12 +20,12 @@ class TelnyxService:
         self.numbers = ["+16297580157", "+16297580011", "+19016761096"]
 
     def get_contacts(self):
-        with open(CONTACTS_FILE, "r") as f:
+        with open(CONTACTS_FILE_TELNYX, "r") as f:
             contacts = json.load(f)
             return contacts
 
     def dump_contacts(self, contacts):
-        with open(CONTACTS_FILE, "w") as f:
+        with open(CONTACTS_FILE_TELNYX, "w") as f:
             json.dump(contacts, f, indent=4)
 
     def telnyx_sender(self, from_number, contact, message):
