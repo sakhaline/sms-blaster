@@ -18,5 +18,3 @@ GHLAPI = GHLApi()
 
 if __name__ == "__main__":
     TELNYX.telnyx_processor()
-    # contacts = GHLAPI.get_contact_list()
-    # generate_correct_contacts_json(contacts)
