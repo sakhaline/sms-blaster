@@ -45,8 +45,8 @@ class TelnyxApi:
 
         if response.status_code == 200:
             message_id = response.json()["data"]["id"]
-            logger.info(f"""SUCCESSFULLY SENT TELNYX MESSAGE TO {formatted_number}.
-                        MESSAGE ID: {message_id}""")
+            logger.debug(f"""SUCCESSFULLY SENT TELNYX MESSAGE TO {formatted_number}.
+                         MESSAGE ID: {message_id}""")
             return message_id
         else:
             logger.error(f"""FAIL TO SEND TELNYX MESSAGE. ERROR: {response.text}""")

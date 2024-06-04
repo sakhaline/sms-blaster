@@ -101,11 +101,11 @@ class DBAPI:
         finally:
             self.close_connection()
 
-    def get_phone_number_list(self, start, end):
+    def get_phone_number_telnyx_status_list(self, start, end):
         self.open_connection()
         cursor = self.con.cursor()
         query = """
-        SELECT phone_number FROM Contact
+        SELECT phone_number, telnyx_sent FROM Contact
         WHERE id BETWEEN ? AND ?
         """
         try:
@@ -119,62 +119,42 @@ class DBAPI:
         finally:
             self.close_connection()
 
-    def update_telnyx_sent_by_phone_number(self, phone_number):
+    def update_telnyx_sent_sms_id_by_phone_number(self, phone_number, sms_id):
         self.open_connection()
         cursor = self.con.cursor()
         query = """
         UPDATE Contact
-        SET telnyx_sent = 1
+        SET telnyx_sent = 1, message_id = ?
         WHERE phone_number = ?
         """
         try:
-            cursor.execute(query, (phone_number,))
+            cursor.execute(query, (sms_id, phone_number))
             self.con.commit()
-            logger.debug(f"""TELNYX SMS STATUS SET SUCCESSFULLY AS 1
+            logger.debug(f"""TELNYX SMS STATUS, MESSSAGE ID SET SUCCESSFULLY AS 1
                          FOR: {phone_number}""")
         except sqlite3.Error as e:
             logger.error(f"FAILED TO SET TELNYX SMS STATUS FOR -> {phone_number} <-.ERROR:\n{e}")
         finally:
             self.close_connection()
 
-    def update_sent_sms_contact(self, phone_number, message, message_id):
+    def update_ghl_conversation_info(self, contact_id, conversation_id, message):
         self.open_connection()
         cursor = self.con.cursor()
         query = """
         UPDATE Contact
-        SET message = ?, message_id = ?
-        WHERE phone_number = ?
-        """
-        try:
-            cursor.execute(query, (message, message_id, phone_number))
-            self.con.commit()
-            logger.debug(f"""CONTACT WITH NUMBER -> {phone_number} <-
-                         UPDATED SUCCESSFULLY WITH MESSAGE ID -> {message_id} <-
-                         MESSAGE TEXT -> {message} <-""")
-        except sqlite3.Error as e:
-            logger.error(f"""FAILED TO UPDATE CONTACT WITH NUMBER -> {phone_number} <-
-                         MESSAGE ID -> {message_id} <-
-                         MESSAGE TEXT -> {message} <-
-                         ERROR: {e}""")
-        finally:
-            self.close_connection()
-
-    def update_ghl_message_info(self, contact_id, conversation_id):
-        self.open_connection()
-        cursor = self.con.cursor()
-        query = """
-        UPDATE Contact
-        SET ghl_conversation_id = ?
+        SET ghl_conversation_id = ?, message = ?
         WHERE ghl_id = ?
         """
         try:
-            cursor.execute(query, (conversation_id, contact_id))
+            cursor.execute(query, (conversation_id, message, contact_id))
             self.con.commit()
             logger.debug(f"""CONTACT WITH ID -> {contact_id} <-
-                         UPDATED SUCCESSFULLY WITH CONVERSATION ID -> {conversation_id} <-""")
+                         UPDATED SUCCESSFULLY WITH CONVERSATION ID -> {conversation_id} <-,
+                         WITH MESSAGE TEXT -> {message} <-""")
         except sqlite3.Error as e:
             logger.error(f"""FAILED TO UPDATE CONTACT WITH ID -> {contact_id} <-
-                         CONVERSATION ID -> {conversation_id} <-
+                         CONVERSATION ID -> {conversation_id} <-,
+                         MESSAGE TEXT -> {message} <-
                          ERROR: {e}""")
         finally:
             self.close_connection()
