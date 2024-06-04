@@ -9,7 +9,7 @@ from src.logs.logging_config import logger
 from src.services.telnyx_api import TelnyxApi
 import src.utils.utils as utils
 from data.messages import MESSAGE1
-from . import CONTACTS_FILE
+from . import CONTACTS_FILE_TELNYX
 
 load_dotenv()
 

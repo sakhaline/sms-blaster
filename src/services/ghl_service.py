@@ -5,7 +5,7 @@ import requests as req
 
 from src.logs.logging_config import logger
 from src.services.ghl_api import GHLApi
-from . import CONTACTS_FILE
+from . import CONTACTS_FILE_GHL
 
 
 class GHLService:
@@ -13,12 +13,12 @@ class GHLService:
         self.ghl_api = GHLApi()
 
     def get_contacts(self):
-        with open(CONTACTS_FILE, "r") as f:
+        with open(CONTACTS_FILE_GHL, "r") as f:
             contacts = json.load(f)
         return contacts
 
     def dump_contacts(self, contacts):
-        with open(CONTACTS_FILE, "w") as f:
+        with open(CONTACTS_FILE_GHL, "w") as f:
             json.dump(contacts, f, indent=4)
 
     def ghl_processor(self, webhook_payload):
