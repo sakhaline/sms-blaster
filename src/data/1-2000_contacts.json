@@ -9563,15 +9563,15 @@
         "null": [
             ""
         ],
-        "message": null,
+        "message": "Hi Jeff, feel free to call anytime",
         "telnyx_sent": true,
         "telnyx_delivered": true,
-        "telnyx_message_id": "40318fca-be9f-456e-8945-dea9feb0aa99",
+        "telnyx_message_id": "bb045a53-9c79-421f-9655-62064a86345f",
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,
-        "ghl_sent": false,
-        "ghl_delivered": false,
+        "ghl_sent": true,
+        "ghl_delivered": true,
         "sms_delivered": false,
         "sms_sent_at": null
     },
