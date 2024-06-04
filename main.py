@@ -6,8 +6,6 @@ from src.services.ghl_api import GHLApi
 from src.services.ghl_service import GHLService
 from src.services.telnyx_service import TelnyxService
 from src.logs.logging_config import logger
-from src.services import CONTACTS_FILE
-
 
 
 TELNYX = TelnyxService()
