@@ -65,7 +65,7 @@ class TelnyxService:
         for contact in contacts:
             if contact["telnyx_sent"] == False:
                 self.telnyx_sender(contact=contact, from_number=from_number, message=message)
-                sleep(3)
+                sleep(1)
             self.dump_contacts(contacts)
 
         flag = self.telnyx_sms_status_checker()

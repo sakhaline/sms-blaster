@@ -1,3 +1,4 @@
+import csv
 import json
 from src.logs.logging_config import logger
 import phonenumbers
@@ -60,5 +61,12 @@ def format_phone_number(phone_number: str):
     return phone_number_formatted
 
 
-if __name__ == "__main__":
-    format_phone_number("1")
+def insert_contact(db, scv_file_path):
+    with open(scv_file_path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            ghl_id = row["Contact Id"]
+            fname = row["First Name"]
+            lname = row["Last Name"]
+            phone_number = row["Phone"]
+            db.insert_contact(ghl_id, fname, lname, phone_number)
