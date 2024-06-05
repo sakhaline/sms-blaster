@@ -10,15 +10,16 @@ class GHLService:
 
     def ghl_processor(self, webhook_payload):
         from_number = webhook_payload["data"]["payload"]["from"]["phone_number"]
-        logger.debug(webhook_payload["data"])
-        message = webhook_payload["data"]["payload"]["text"]
+        if from_number not in ["+16297580157", "+16297580011", "+19016761096"]:
+            logger.debug(webhook_payload["data"])
+            message = webhook_payload["data"]["payload"]["text"]
 
-        contact_id = self.db.get_ghl_id_by_phone_number(from_number)
-        conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
-        if conversation_id:
-            result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
-                                                      message_text=message)
-            if result:
-                self.db.update_ghl_conversation_info(contact_id=contact_id,
-                                                     conversation_id=conversation_id,
-                                                     message=message)
+            contact_id = self.db.get_ghl_id_by_phone_number(from_number)
+            conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
+            if conversation_id:
+                result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
+                                                        message_text=message)
+                if result:
+                    self.db.update_ghl_conversation_info(contact_id=contact_id,
+                                                        conversation_id=conversation_id,
+                                                        message=message)
