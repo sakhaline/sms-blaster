@@ -4,7 +4,7 @@ from src.services.ghl_api import GHLApi
 
 
 class GHLService:
-    def __init__(self, db):
+    def __init__(self):
         self.ghl_api = GHLApi()
         self.db = DBAPI()
 
