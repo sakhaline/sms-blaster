@@ -142,7 +142,7 @@ class DBAPI:
         cursor = self.con.cursor()
         query = """
         UPDATE Contact
-        SET ghl_conversation_id = ?, message = ?
+        SET ghl_conversation_id = ?, message = ?, ghl_sent = 1
         WHERE ghl_id = ?
         """
         try:
