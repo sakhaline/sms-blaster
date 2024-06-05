@@ -99,15 +99,15 @@
         "null": [
             ""
         ],
-        "message": null,
+        "message": "Not interested ",
         "telnyx_sent": false,
         "telnyx_delivered": false,
-        "telnyx_message_id": false,
+        "telnyx_message_id": "af923e37-1b53-4009-96ff-12ab3e33c126",
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,
-        "ghl_sent": false,
-        "ghl_delivered": false,
+        "ghl_sent": true,
+        "ghl_delivered": true,
         "sms_delivered": false,
         "sms_sent_at": null
     },
@@ -1023,15 +1023,15 @@
         "null": [
             ""
         ],
-        "message": null,
+        "message": "Stop",
         "telnyx_sent": false,
         "telnyx_delivered": false,
-        "telnyx_message_id": false,
+        "telnyx_message_id": "45b47d8b-6527-4190-a456-f35ded22fb34",
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,
-        "ghl_sent": false,
-        "ghl_delivered": false,
+        "ghl_sent": true,
+        "ghl_delivered": true,
         "sms_delivered": false,
         "sms_sent_at": null
     },
@@ -2115,15 +2115,15 @@
         "null": [
             ""
         ],
-        "message": null,
+        "message": "Nothing for sale.",
         "telnyx_sent": false,
         "telnyx_delivered": false,
-        "telnyx_message_id": false,
+        "telnyx_message_id": "d063678b-f40b-4ce2-8284-3f5b731d4e28",
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,
-        "ghl_sent": false,
-        "ghl_delivered": false,
+        "ghl_sent": true,
+        "ghl_delivered": true,
         "sms_delivered": false,
         "sms_sent_at": null
     },
@@ -2339,15 +2339,15 @@
         "null": [
             ""
         ],
-        "message": null,
+        "message": "Yea what's up",
         "telnyx_sent": false,
         "telnyx_delivered": false,
-        "telnyx_message_id": false,
+        "telnyx_message_id": "8128e083-6cf8-42db-bdde-42a6d64bbab7",
         "twilio_sent": false,
         "twilio_delivered": false,
         "twilio_message_id": false,
-        "ghl_sent": false,
-        "ghl_delivered": false,
+        "ghl_sent": true,
+        "ghl_delivered": true,
         "sms_delivered": false,
         "sms_sent_at": null
     },
