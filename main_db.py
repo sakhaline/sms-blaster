@@ -9,8 +9,7 @@ from src.logs.logging_config import logger
 from src.services import CONTACTS_FILE
 
 
-
-TELNYX = TelnyxService(start=1, end=100)
+TELNYX = TelnyxService(start=1, end=1)
 GHL = GHLService()
 GHLAPI = GHLApi()
 
