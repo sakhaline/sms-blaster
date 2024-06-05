@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from src.logs.logging_config import logger
-from src.services.ghl_service import GHLService
+from src.services.ghl_service_db import GHLService
 
 app = Flask(__name__)
 

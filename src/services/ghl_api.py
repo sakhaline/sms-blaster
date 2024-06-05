@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import requests as req
 
 from src.logs.logging_config import logger
-from src import DATADIR
+
 
 load_dotenv()
 
@@ -83,22 +83,3 @@ class GHLApi:
         else:
             logger.error(f"FAIL TO GET CONTACTS LIST: {response.text}")
 
-
-def ghl_processor(webhook_payload):
-    GHL = GHLApi()
-    CONTACTS_FILE = os.path.join(DATADIR, "test_data", "temp_test_contacts.json")
-
-    from_number = webhook_payload["data"]["payload"]["from"]["phone_number"]
-    message = webhook_payload["data"]["text"]
-
-    with open(CONTACTS_FILE, "r") as f:
-        contacts = json.load(f)
-    for contact in contacts:
-        contact_number = contact["Phone"]
-        if contact_number == from_number:
-            contact_id = contact_id["id"]
-            conversation_id = GHL.create_conversation(contact_id=contact_id)
-            if conversation_id:
-                result = GHL.add_inbound_message(conversation_id=conversation_id,
-                                                 message_text=message)
-                return result

@@ -1,12 +1,6 @@
-import os
-import json
-from dotenv import load_dotenv
-import requests as req
 from src.db.api import DBAPI
-
 from src.logs.logging_config import logger
 from src.services.ghl_api import GHLApi
-
 
 
 class GHLService:
