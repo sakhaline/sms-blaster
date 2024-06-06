@@ -106,7 +106,7 @@ class DBAPI:
         cursor = self.con.cursor()
         query = """
         SELECT phone_number, telnyx_sent FROM Contact
-        WHERE id BETWEEN ? AND ?
+        WHERE id BETWEEN ? AND ? AND telnyx_sent = 0
         """
         try:
             cursor.execute(query, (start, end))
