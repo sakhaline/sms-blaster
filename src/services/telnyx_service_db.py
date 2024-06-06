@@ -13,12 +13,11 @@ load_dotenv()
 
 
 class TelnyxService:
-    def __init__(self, start, end):
+    def __init__(self, limit):
         self.telnyx_api = TelnyxApi()
         self.numbers = ["+16297580157", "+16297580011", "+19016761096"]
         self.db = DBAPI()
-        self.start = start
-        self.end = end
+        self.limit = limit
 
 
     def telnyx_sender(self, from_number, contact_number, message):
@@ -36,7 +35,7 @@ class TelnyxService:
         from_number = random.choice(self.numbers)
         sms_id = None
         message = MESSAGE1
-        contacts = self.db.get_phone_number_telnyx_status_list(self.start, self.end)
+        contacts = self.db.get_phone_number_telnyx_status_list(self.limit)
         for contact in contacts:
             try:
                 status = contact[1]

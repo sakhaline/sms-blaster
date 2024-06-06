@@ -102,15 +102,17 @@ class DBAPI:
         finally:
             self.close_connection()
 
-    def get_phone_number_telnyx_status_list(self, start, end):
+    def get_phone_number_telnyx_status_list(self, limit):
         self.open_connection()
         cursor = self.con.cursor()
         query = """
-        SELECT phone_number, telnyx_sent FROM Contact
-        WHERE id BETWEEN ? AND ? AND telnyx_sent = 0
+        SELECT phone_number, telnyx_sent
+        FROM Contact
+        WHERE telnyx_sent = 0
+        LIMIT ?
         """
         try:
-            cursor.execute(query, (start, end))
+            cursor.execute(query, (limit,))
             result = cursor.fetchall()
             logger.debug("PHONE NUMBER LIST FETCHED SUCCESSFULLY")
             return result
