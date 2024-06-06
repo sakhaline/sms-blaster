@@ -3,7 +3,7 @@ from src.services.ghl_service_db import GHLService
 from src.services.telnyx_service_db import TelnyxService
 
 
-TELNYX = TelnyxService(start=1001, end=2000)
+TELNYX = TelnyxService(limit=1000)
 GHL = GHLService()
 GHLAPI = GHLApi()
 
