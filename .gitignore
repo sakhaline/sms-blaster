@@ -15,3 +15,4 @@ src/data/all_contacts.json
 src/data/11-contacts.json
 src/data/to_db.csv
 src/logs/app-2024-06-06.log
+contact_update.py

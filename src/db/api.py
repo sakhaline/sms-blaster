@@ -180,3 +180,22 @@ class DBAPI:
                          ERROR: {e}""")
         finally:
             self.close_connection()
+
+
+    def get_message_list(self):
+        self.open_connection()
+        cursor = self.con.cursor()
+        query = """
+        SELECT ghl_id, ghl_conversation_id, message FROM Contact
+        WHERE message IS NOT NULL
+        """
+        try:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            logger.debug("PHONE MESSAGE LIST FETCHED SUCCESSFULLY")
+            return result
+        except sqlite3.Error as e:
+            logger.error(f"FAILED TO FETCH MESSAGE LIST. ERROR:\n{e}")
+            return None
+        finally:
+            self.close_connection()

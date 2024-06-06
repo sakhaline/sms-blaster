@@ -95,3 +95,25 @@ class GHLApi:
         else:
             logger.error(f"FAIL TO UPDATE CONTACT TAG. ID: #{contact_id}. ERROR: {response.text}")
 
+
+    def get_conversation_messages(self, conversation_id):
+        response = req.get(url=f"{self.url}conversations/{conversation_id}/messages",
+                           headers=self.headers)
+
+        if response.status_code == 200:
+            response_payload = response.json()
+            logger.info(f"MESSAGES OF CONVERSAION WITH ID: {conversation_id} RECIEVED SUCCESSFULLY ^_^")
+            return response_payload["messages"]["messages"]
+        else:
+            logger.error(f"FAIL TO GET CONVERSATION MESSAGES. ERROR: {response.text}.")
+
+
+    def delete_conversation(self, conversation_id):
+        response = req.delete(url=f"{self.url}conversations/{conversation_id}",
+                                    headers=self.headers)
+
+        if response.status_code == 200:
+            logger.info(f"CONVERSAION WITH ID: {conversation_id} DELETED SUCCESSFULLY ^_^")
+            return True
+        else:
+            logger.error(f"FAIL TO DELETE CONVERSATION MESSAGES. ERROR: {response.text}.")

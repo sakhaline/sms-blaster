@@ -31,6 +31,7 @@ class GHLService:
                                                             conversation_id=conversation_id,
                                                             message=message,
                                                             conversation_status=0)
+                        self.ghl_api.delete_conversation(conversation_id)
                     else:
                         self.db.update_ghl_conversation_info(contact_id=contact_id,
                                                             conversation_id=conversation_id,
