@@ -41,12 +41,13 @@ class TelnyxService:
                 contact_number = contact[0]
             except IndexError:
                 logger.error(f"FAIL TO SEND SMS. NO NECESSARY FIELDS.")
+            else:
                 sms_id = self.telnyx_sender(contact_number=contact_number,
                                             from_number=from_number,
                                             message=message)
                 if sms_id:
                     self.db.update_telnyx_sent_sms_id_by_phone_number(phone_number=contact_number,
-                                                                      sms_id=sms_id)
+                                                                        sms_id=sms_id)
                 sleep(1)
         # flag = self.telnyx_sms_status_checker()
         # while not flag:
