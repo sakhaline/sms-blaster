@@ -83,3 +83,16 @@ class GHLApi:
         else:
             logger.error(f"FAIL TO GET CONTACTS LIST: {response.text}")
 
+
+    def update_contact_tag(self, contact_id, tag):
+        response = req.put(url=f"{self.url}contacts/{contact_id}",
+                           headers=self.headers,
+                           params={"locationId": self.location_id},
+                           json={"tags": [tag]})
+
+        if response.status_code == 200:
+            logger.info(f"SUCCESSFULLY ADDED TAG {tag} TO THE CONTACT WITH ID: #{contact_id}")
+            return True
+        else:
+            logger.error(f"FAIL TO UPDATE CONTACT TAG. ID: #{contact_id}. ERROR: {response.text}")
+

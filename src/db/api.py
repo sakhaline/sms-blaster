@@ -33,6 +33,7 @@ class DBAPI:
         message_id TEXT NULL,
         ghl_conversation_id TEXT NULL,
         ghl_conversation_status INTEGER DEFAULT 1
+        last_updated DATETIME DEFAULT CURRENT_TIMESTAMP
         );
         """
         try:
@@ -137,16 +138,18 @@ class DBAPI:
         finally:
             self.close_connection()
 
-    def update_ghl_conversation_info(self, contact_id, conversation_id, message):
+    def update_ghl_conversation_info(self, contact_id, conversation_id, message,
+                                     conversation_status=1):
         self.open_connection()
         cursor = self.con.cursor()
         query = """
         UPDATE Contact
-        SET ghl_conversation_id = ?, message = ?, ghl_sent = 1
+        SET ghl_conversation_id = ?, message = ?, ghl_sent = 1, ghl_conversation_status = ?
         WHERE ghl_id = ?
         """
         try:
-            cursor.execute(query, (conversation_id, message, contact_id))
+            cursor.execute(query, (conversation_id, message,
+                                   conversation_status, contact_id))
             self.con.commit()
             logger.debug(f"""CONTACT WITH ID -> {contact_id} <-
                          UPDATED SUCCESSFULLY WITH CONVERSATION ID -> {conversation_id} <-,
