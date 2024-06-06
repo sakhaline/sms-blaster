@@ -87,7 +87,6 @@ class GHLApi:
     def update_contact_tag(self, contact_id, tag):
         response = req.put(url=f"{self.url}contacts/{contact_id}",
                            headers=self.headers,
-                           params={"locationId": self.location_id},
                            json={"tags": [tag]})
 
         if response.status_code == 200:

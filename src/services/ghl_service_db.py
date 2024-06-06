@@ -9,7 +9,7 @@ class GHLService:
         self.db = DBAPI()
 
     def add_tag(self, contact_id: str, message: str):
-        tag = "closed"
+        tag = "no contact"
         if message.lower().strip() == "stop":
             self.ghl_api.update_contact_tag(contact_id, tag)
             return True
