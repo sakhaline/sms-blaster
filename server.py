@@ -21,6 +21,7 @@ def ghl_webhook():
         logger.error(f"Error processing webhook: {e}")
         return jsonify({"status": "Error", "message": "Internal Server Error"}), 500
 
+
 @app.route("/oauth", methods=["GET"])
 def oauth():
     return jsonify({"success": True})

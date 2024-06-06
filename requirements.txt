@@ -1,7 +1,7 @@
-requests==2.31.0
-phonenumbers==8.13.27
-twilio==8.11.1
+requests
+phonenumbers
+twilio
 python-dotenv
-fastapi[all]
+flask
 loguru
-uvicorn
+sqlite3

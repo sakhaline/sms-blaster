@@ -2,12 +2,10 @@ import os
 from time import sleep
 import random
 from dotenv import load_dotenv
-import requests as req
-import json
+
 
 from src.logs.logging_config import logger
 from src.services.telnyx_api import TelnyxApi
-import src.utils.utils as utils
 from data.messages import MESSAGE1
 from src.db.api import DBAPI
 

@@ -29,7 +29,6 @@ server_log_config = {
 logger = logger.bind()
 logger.add(**app_log_config)
 
-# Example usage of the logger
 logger.debug("This is a debug message.")
 logger.info("This is an info message.")
 logger.error("This is an error message.")
