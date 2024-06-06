@@ -38,15 +38,12 @@ class TelnyxService:
         contacts = self.db.get_phone_number_telnyx_status_list(self.limit)
         for contact in contacts:
             try:
-                status = contact[1]
                 contact_number = contact[0]
             except IndexError:
                 logger.error(f"FAIL TO SEND SMS. NO NECESSARY FIELDS.")
-            else:
-                if status == 0:
-                    sms_id = self.telnyx_sender(contact_number=contact_number,
-                                                from_number=from_number,
-                                                message=message)
+                sms_id = self.telnyx_sender(contact_number=contact_number,
+                                            from_number=from_number,
+                                            message=message)
                 if sms_id:
                     self.db.update_telnyx_sent_sms_id_by_phone_number(phone_number=contact_number,
                                                                       sms_id=sms_id)
