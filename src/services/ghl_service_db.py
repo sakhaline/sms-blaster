@@ -10,7 +10,8 @@ class GHLService:
 
     def define_tag(self, message: str):
         tag = ""
-        if message.lower().strip() == "stop":
+        message = message.lower().strip()
+        if message == "stop":
             tag = "no contact"
         else:
             tag = "active"
