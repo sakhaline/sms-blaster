@@ -117,3 +117,33 @@ class GHLApi:
             return True
         else:
             logger.error(f"FAIL TO DELETE CONVERSATION MESSAGES. ERROR: {response.text}.")
+
+
+    def update_contact_dnd(self, contact_id):
+        data = {"dnd": True,
+                "dndSettings": {"Call": {"status": "inactive"},
+                                "Email": {"status": "inactive"},
+                                "SMS": {"status": "inactive"},
+                                "WhatsApp": {"status": "inactive"},
+                                "GMB": {"status": "inactive"},
+                                "FB":  {"status": "inactive"}}}
+        response = req.put(url=f"{self.url}contacts/{contact_id}",
+                           headers=self.headers,
+                           json=data)
+
+        if response.status_code == 200:
+            logger.info(f"SUCCESSFULLY UPDATE CONTACT DND STATUS. CONTACT ID: #{contact_id}")
+            return True
+        else:
+            logger.error(f"FAIL TO UPDATE DND STATUS. CONTACT ID: #{contact_id}. ERROR: {response.text}")
+
+    def update_contact_tag(self, contact_id, tag):
+        response = req.put(url=f"{self.url}contacts/{contact_id}",
+                           headers=self.headers,
+                           json={"tags": [tag]})
+
+        if response.status_code == 200:
+            logger.info(f"SUCCESSFULLY UPDATED CONTACT WITH TAG - {tag}. CONTACT ID: #{contact_id}")
+            return True
+        else:
+            logger.error(f"FAIL TO UPDATE CONTACT WITH TAG - {tag}. CONTACT ID: #{contact_id}. ERROR: {response.text}")

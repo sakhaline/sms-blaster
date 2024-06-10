@@ -8,11 +8,14 @@ class GHLService:
         self.ghl_api = GHLApi()
         self.db = DBAPI()
 
-    def add_tag(self, contact_id: str, message: str):
-        tag = "no contact"
+    def define_tag(self, message: str):
+        tag = ""
         if message.lower().strip() == "stop":
-            self.ghl_api.update_contact_tag(contact_id, tag)
-            return True
+            tag = "no contact"
+        else:
+            tag = "active"
+        return tag
+
 
     def ghl_processor(self, webhook_payload):
         from_number = webhook_payload["data"]["payload"]["from"]["phone_number"]
@@ -26,11 +29,12 @@ class GHLService:
                 result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
                                                           message_text=message)
                 if result:
-                    if self.add_tag(contact_id, message):
+                    tag = self.define_tag
+                    if tag == "no contact":
                         self.db.update_ghl_conversation_info(contact_id=contact_id,
-                                                            conversation_id=conversation_id,
-                                                            message=message,
-                                                            conversation_status=0)
+                                                             conversation_id=conversation_id,
+                                                             message=message,
+                                                             conversation_status=0)
                         self.ghl_api.delete_conversation(conversation_id)
                     else:
                         self.db.update_ghl_conversation_info(contact_id=contact_id,
