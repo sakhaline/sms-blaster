@@ -25,19 +25,23 @@ class GHLService:
             message = webhook_payload["data"]["payload"]["text"]
 
             contact_id = self.db.get_ghl_id_by_phone_number(from_number)
-            conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
-            if conversation_id:
-                result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
-                                                          message_text=message)
-                if result:
-                    tag = self.define_tag
-                    if tag == "no contact":
-                        self.db.update_ghl_conversation_info(contact_id=contact_id,
-                                                             conversation_id=conversation_id,
-                                                             message=message,
-                                                             conversation_status=0)
-                        self.ghl_api.delete_conversation(conversation_id)
-                    else:
-                        self.db.update_ghl_conversation_info(contact_id=contact_id,
-                                                            conversation_id=conversation_id,
-                                                            message=message)
+            if contact_id:
+                conversation_id = self.ghl_api.create_conversation(contact_id=contact_id)
+                if conversation_id:
+                    result = self.ghl_api.add_inbound_message(conversation_id=conversation_id,
+                                                              message_text=message)
+                    if result:
+                        tag = self.define_tag
+                        if tag == "no contact":
+                            self.ghl_api.update_contact_tag(contact_id, tag)
+                            self.ghl_api.update_contact_dnd(contact_id)
+                            self.db.update_ghl_conversation_info(contact_id=contact_id,
+                                                                conversation_id=conversation_id,
+                                                                message=message,
+                                                                conversation_status=0)
+                            self.ghl_api.delete_conversation(conversation_id)
+                        else:
+                            self.ghl_api.update_contact_tag(contact_id, tag)
+                            self.db.update_ghl_conversation_info(contact_id=contact_id,
+                                                                conversation_id=conversation_id,
+                                                                message=message)

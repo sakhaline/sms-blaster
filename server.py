@@ -16,7 +16,7 @@ def ghl_webhook():
         if result:
             return jsonify({"status": "Success", "message": "Inbound message created successfuly"})
         else:
-            return jsonify({"status": "Error"})
+            return jsonify({"status": "Error", "message": "Contact not found"}), 500
     except Exception as e:
         logger.error(f"Error processing webhook: {e}")
         return jsonify({"status": "Error", "message": "Internal Server Error"}), 500
